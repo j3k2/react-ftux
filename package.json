@@ -1,0 +1,38 @@
+{
+  "name": "react-ftux",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "babel": "babel src -d lib --copy-files",
+    "babel:watch": "babel src -w -d lib --copy-files"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.2.0",
+    "react-dom": "^15.3.0 || ^16.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.46",
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.46",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/preset-react": "^7.0.0-beta.46",
+    "babel-loader": "^8.0.0-beta.0"
+  },
+  "author": "John Kim <jksfo@pm.me>",
+  "homepage": "https://gitlab.com/jksfo/react-ftux",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:jksfo/react-ftux.git"
+  },
+  "babel": {
+    "presets": ["@babel/env", "@babel/react"],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-proposal-class-properties"
+    ]
+  }
+}
