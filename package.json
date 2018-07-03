@@ -6,7 +6,7 @@
   "scripts": {
     "babel": "babel src -d lib --copy-files",
     "babel:watch": "babel src -w -d lib --copy-files",
-    "dev-server": "webpack-dev-server --mode development"
+    "dev-server": "webpack-dev-server --mode development --hot"
   },
   "keywords": [],
   "license": "MIT",
