@@ -94,7 +94,7 @@ class ReactFtuxTooltip extends Component {
         position: "fixed",
         "borderRadius": 3,
         "boxShadow": "4px 4px 5px 0px grey",
-        width: 400
+        width: 300
       },
       stepTitle: 'Step title',
       stepContent: 'Step content'
