@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import ee from "wolfy87-eventemitter"
+import ee from "wolfy87-eventemitter";
+import { css } from 'glamor';
 // import '../src/index.css';
 
 //Action events:
@@ -89,9 +90,9 @@ class ReactFtuxTooltip extends Component {
         color: "white",
         padding: 20,
         position: "fixed",
-        "borderRadius": 3,
-        "boxShadow": "4px 4px 5px 0px grey",
-        width: 300
+        borderRadius: 2,
+        // boxShadow: "4px 4px 5px 0px grey",
+        width: 360
       }
     };
   }
@@ -145,40 +146,72 @@ class ReactFtuxTooltip extends Component {
 
   render() {
     let buttons;
+    const buttonStyle = css({
+      margin: 4,
+      width: 128,
+      height: 32,
+      backgroundColor: 'black',
+      border: 'solid 1px white',
+      borderRadius: 2,
+      color: 'white'
+    });
+    const anchorStyle = css({
+      ':hover': {
+        cursor: 'pointer'
+      }
+    }); 
 
     if(this.state.last) {
       buttons = (<div>
-                <button
-        onClick={this.state.triggerDecreaseStep}>
+        <button {...buttonStyle} {...anchorStyle}
+          onClick={this.state.triggerDecreaseStep}>
           Previous
         </button>
-        <button onClick={this.state.triggerEndFtux}>
-        Done
+        <button {...buttonStyle} {...anchorStyle} 
+          onClick={this.state.triggerEndFtux}>
+          Done
       </button>
-      </div>)
+      </div>);
     } else {
-      buttons = (
-        <div>
+      buttons = (<div>
         {!this.state.first &&
-                <button
-                onClick={this.state.triggerDecreaseStep}>
-                  Previous
-                </button>
+          <button {...buttonStyle} {...anchorStyle}
+            onClick={this.state.triggerDecreaseStep}>
+            Previous
+          </button>
         }
-        <button 
-        onClick={this.state.triggerIncreaseStep}>
-        Next
-      </button>
-        </div>
-      )
+        <button {...buttonStyle} {...anchorStyle} 
+          onClick={this.state.triggerIncreaseStep}>
+          Next
+        </button>
+      </div>);
     }
 
     return (
       <div style={{transform: 'scale(1)', 'zIndex': 99}}>
           <div style={Object.assign(this.state.style, {display: this.state.display ? null : 'none'})}>
+            <div 
+              style={{
+                position: 'absolute',
+                top: -16,
+                width: 0, 
+                height: 0, 
+                borderLeft: '8px solid transparent', 
+                borderRight: '8px solid transparent', 
+                borderBottom: '16px solid black'}}>
+            </div>
             <div style={{display: "block"}}>
               {this.props.children}
             </div>
+            <span {...anchorStyle} 
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: 10
+              }}
+              onClick={this.state.triggerEndFtux}>
+              &#x2715;
+            </span>
             <div style={{float: "right", "paddingTop": 10}}>
               {buttons}
             </div>

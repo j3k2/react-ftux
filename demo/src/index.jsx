@@ -44,7 +44,7 @@ function Demo() {
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
-                        <ReactFtuxTooltip step={0} tooltipStyle={{ top: 40 }}>
+                        <ReactFtuxTooltip step={0} tooltipStyle={{ top: 50, left: -8 }}>
                             <span>Title 1</span>
                             <br />
                             <span>Content 1 lorem ipsum</span>
@@ -85,7 +85,7 @@ function Demo() {
                                 <a className="dropdown-item small" href="#">View all messages</a>
                             </div>
                         </li>
-                        <ReactFtuxTooltip step={1} tooltipStyle={{ top: 40 }}>
+                        <ReactFtuxTooltip step={1} tooltipStyle={{ top: 50, left: -8 }}>
                             <span>Title 2</span>
                             <br />
                             <span>Content 2 lorem ipsum</span>
@@ -133,7 +133,7 @@ function Demo() {
                                 <a className="dropdown-item small" href="#">View all alerts</a>
                             </div>
                         </li>
-                        <ReactFtuxTooltip step={2} tooltipStyle={{ top: 40 }}>
+                        <ReactFtuxTooltip step={2} tooltipStyle={{ top: 50, left: -8 }}>
                             <span>Title 3</span>
                             <br />
                             <span>Content 3 lorem ipsum</span>
@@ -150,7 +150,7 @@ function Demo() {
                                 </div>
                             </form>
                         </li>
-                        <ReactFtuxTooltip step={4} tooltipStyle={{ top: 40, left: -200 }}>
+                        <ReactFtuxTooltip step={4} tooltipStyle={{ top: 40, left: -260 }}>
                             <span>Title 5</span>
                             <br />
                             <span>Content 5 lorem ipsum</span>
