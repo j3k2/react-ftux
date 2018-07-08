@@ -42,7 +42,7 @@ function Demo() {
                         <span className="nav-link-text">Dashboard</span>
                     </a>
                     </li>
-                    <ReactFtuxTooltip step={3} tooltipStyle={{top:40, left: 240}}>
+                    <ReactFtuxTooltip step={3} tooltipStyle={{left: 240}}>
                     </ReactFtuxTooltip>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                     <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
