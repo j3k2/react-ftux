@@ -7,13 +7,11 @@ const FTUX_ACTION_END = 'ftuxActionEnd';
 const FTUX_ACTION_INCREASE = 'ftuxActionIncrease';
 const FTUX_ACTION_DECREASE = 'ftuxActionDecrease';
 //Reducer events:
-const FTUX_REDUCER_STEP = 'ftuxReducerStep';
+const FTUX_REDUCER = 'ftuxReducer';
 
 const events = new EventEmitter();
-let ftuxStore = {
-    currentStep: 0,
-    total: 1
-};
+
+let ftuxStore = {};
 
 class ReactFtux extends Component {
   constructor(props) {
@@ -22,18 +20,18 @@ class ReactFtux extends Component {
     this.increaseStep = () => {
       const nextStep = ftuxStore.currentStep + 1;
       ftuxStore = {currentStep: nextStep, total: this.props.total};
-      events.trigger(FTUX_REDUCER_STEP, [ftuxStore]);
+      events.trigger(FTUX_REDUCER, [ftuxStore]);
     };
 
     this.decreaseStep = () => {
       const nextStep = ftuxStore.currentStep - 1 > 0 ? ftuxStore.currentStep - 1 : 0;
       ftuxStore = {currentStep: nextStep, total: this.props.total};
-      events.trigger(FTUX_REDUCER_STEP, [ftuxStore]);
+      events.trigger(FTUX_REDUCER, [ftuxStore]);
     }
 
     this.init = () => {
       ftuxStore = {currentStep: 0, total: this.props.total};
-      events.trigger(FTUX_REDUCER_STEP, [ftuxStore]);
+      events.trigger(FTUX_REDUCER, [ftuxStore]);
     }
   }
 
@@ -44,19 +42,21 @@ class ReactFtux extends Component {
     events.on(FTUX_ACTION_DECREASE, () => {
       this.decreaseStep();
     });
-    events.on(FTUX_ACTION_END, function(){
-      console.log('ftux end');
+    events.on(FTUX_ACTION_END, () => {
+      this.props.ftuxEnd();
     });
-    events.on(FTUX_REDUCER_STEP, (stepState) => {
+    events.on(FTUX_REDUCER, (stepState) => {
       this.setState(stepState);
     });
-    this.init();
+    if(!this.props.disable){
+      this.init();
+    }
   }
 
   componentWillUnmount() {
     events.off(FTUX_ACTION_INCREASE);
     events.off(FTUX_ACTION_END);
-    events.off(FTUX_REDUCER_STEP);
+    events.off(FTUX_REDUCER);
   }
 
   render() {
@@ -128,18 +128,18 @@ class ReactFtuxTooltip extends Component {
   }
 
   componentDidMount() {
-    events.on(FTUX_REDUCER_STEP, (stepState) => {
+    events.on(FTUX_REDUCER, (stepState) => {
       this.updateState(stepState);
     });
     events.on(FTUX_ACTION_END, () => {
       this.updateState(ftuxStore, true);
     });
-    events.trigger(FTUX_REDUCER_STEP, [ftuxStore]);
+    events.trigger(FTUX_REDUCER, [ftuxStore]);
   }
 
   componentWillUnmount() {
     events.off(FTUX_ACTION_END);
-    events.off(FTUX_REDUCER_STEP);
+    events.off(FTUX_REDUCER);
   }
 
   render() {
@@ -178,7 +178,7 @@ class ReactFtuxTooltip extends Component {
             <div style={{display: "block"}}>
               {this.props.children}
             </div>
-            <div style={{float: "right"}}>
+            <div style={{float: "right", "paddingTop": 10}}>
               {buttons}
             </div>
           </div>
