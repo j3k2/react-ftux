@@ -6,7 +6,7 @@ import { ReactFtux, ReactFtuxTooltip } from "../../lib";
 function Demo() {
     return (
         <div>
-            <ReactFtux total={4} stepConfig={{
+            <ReactFtux total={5} stepConfig={{
                 0: {
                     stepTitle: 'Step 1',
                     stepContent: 'Step 1 Content lorem ipsum'
@@ -22,6 +22,10 @@ function Demo() {
                 3: {
                     stepTitle: 'Step 4',
                     stepContent: 'Step 4 Content'
+                },
+                4: {
+                    stepTitle: 'Step 5',
+                    stepContent: 'Step 5 Content'
                 }
             }}></ReactFtux>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -150,6 +154,8 @@ function Demo() {
                         </div>
                     </form>
                     </li>
+                    <ReactFtuxTooltip step={4} tooltipStyle={{top:40, left: -200}}>
+                    </ReactFtuxTooltip>
                     <li className="nav-item">
                     <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
                         <i className="fa fa-fw fa-sign-out"></i>Logout</a>
