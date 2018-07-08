@@ -10,13 +10,10 @@ function Demo() {
             <ReactFtux total={3}></ReactFtux>
             <ReactFtuxTooltip step={0}><button>asdf</button></ReactFtuxTooltip>
             <ReactFtuxTooltip step={1}><button style={{
-                background: "red",
-                // position: "fixed",
-                right: 0
+                background: "red"
             }}>asdf</button></ReactFtuxTooltip>
             <ReactFtuxTooltip step={2}><button style={{
-                background: "blue",
-                left: 20
+                background: "blue"
             }}>asdf</button></ReactFtuxTooltip>
         </div>
     );
