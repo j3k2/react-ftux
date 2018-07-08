@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import EventEmitter from "wolfy87-eventemitter"
+import ee from "wolfy87-eventemitter"
 // import '../src/index.css';
 
 //Action events:
@@ -9,7 +9,7 @@ const FTUX_ACTION_DECREASE = 'ftuxActionDecrease';
 //Reducer events:
 const FTUX_REDUCER = 'ftuxReducer';
 
-const events = new EventEmitter();
+const eventEmitter = new ee();
 
 let ftuxStore = {};
 
@@ -20,32 +20,32 @@ class ReactFtux extends Component {
     this.increaseStep = () => {
       const nextStep = ftuxStore.currentStep + 1;
       ftuxStore = {currentStep: nextStep, total: this.props.total};
-      events.trigger(FTUX_REDUCER, [ftuxStore]);
+      eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
     };
 
     this.decreaseStep = () => {
       const nextStep = ftuxStore.currentStep - 1 > 0 ? ftuxStore.currentStep - 1 : 0;
       ftuxStore = {currentStep: nextStep, total: this.props.total};
-      events.trigger(FTUX_REDUCER, [ftuxStore]);
+      eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
     }
 
     this.init = () => {
       ftuxStore = {currentStep: 0, total: this.props.total};
-      events.trigger(FTUX_REDUCER, [ftuxStore]);
+      eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
     }
   }
 
   componentDidMount() {
-    events.on(FTUX_ACTION_INCREASE, () => {
+    eventEmitter.on(FTUX_ACTION_INCREASE, () => {
       this.increaseStep();
     });
-    events.on(FTUX_ACTION_DECREASE, () => {
+    eventEmitter.on(FTUX_ACTION_DECREASE, () => {
       this.decreaseStep();
     });
-    events.on(FTUX_ACTION_END, () => {
+    eventEmitter.on(FTUX_ACTION_END, () => {
       this.props.ftuxEnd();
     });
-    events.on(FTUX_REDUCER, (stepState) => {
+    eventEmitter.on(FTUX_REDUCER, (stepState) => {
       this.setState(stepState);
     });
     if(!this.props.disable){
@@ -54,10 +54,10 @@ class ReactFtux extends Component {
   }
 
   componentWillUnmount() {
-    events.off(FTUX_ACTION_INCREASE);
-    events.off(FTUX_ACTION_DECREASE);
-    events.off(FTUX_ACTION_END);
-    events.off(FTUX_REDUCER);
+    eventEmitter.off(FTUX_ACTION_INCREASE);
+    eventEmitter.off(FTUX_ACTION_DECREASE);
+    eventEmitter.off(FTUX_ACTION_END);
+    eventEmitter.off(FTUX_REDUCER);
   }
 
   render() {
@@ -76,13 +76,13 @@ class ReactFtuxTooltip extends Component {
       last: false,
       first: false,
       triggerEndFtux: () => {
-        events.trigger(FTUX_ACTION_END);
+        eventEmitter.trigger(FTUX_ACTION_END);
       },
       triggerIncreaseStep: () => {
-        events.trigger(FTUX_ACTION_INCREASE);
+        eventEmitter.trigger(FTUX_ACTION_INCREASE);
       },
       triggerDecreaseStep: () => {
-        events.trigger(FTUX_ACTION_DECREASE);
+        eventEmitter.trigger(FTUX_ACTION_DECREASE);
       },
       style: {
         background: "black",
@@ -129,18 +129,18 @@ class ReactFtuxTooltip extends Component {
   }
 
   componentDidMount() {
-    events.on(FTUX_REDUCER, (stepState) => {
+    eventEmitter.on(FTUX_REDUCER, (stepState) => {
       this.updateState(stepState);
     });
-    events.on(FTUX_ACTION_END, () => {
+    eventEmitter.on(FTUX_ACTION_END, () => {
       this.updateState(ftuxStore, true);
     });
-    events.trigger(FTUX_REDUCER, [ftuxStore]);
+    eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
   }
 
   componentWillUnmount() {
-    events.off(FTUX_ACTION_END);
-    events.off(FTUX_REDUCER);
+    eventEmitter.off(FTUX_ACTION_END);
+    eventEmitter.off(FTUX_REDUCER);
   }
 
   render() {
