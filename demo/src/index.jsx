@@ -6,7 +6,20 @@ import { ReactFtux, ReactFtuxTooltip } from "../../lib";
 function Demo() {
     return (
         <div>
-            <ReactFtux total={3}></ReactFtux>
+            <ReactFtux total={3} stepConfig={{
+                0: {
+                    stepTitle: 'Step 1',
+                    stepContent: 'Step 1 Content lorem ipsum'
+                },
+                1: {
+                    stepTitle: 'Step 2',
+                    stepContent: 'Step 2 Content lorem ipsum'
+                },
+                2: {
+                    stepTitle: 'Step 3',
+                    stepContent: 'Step 3 Content lorem ipsum'
+                }
+            }}></ReactFtux>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
                 <a className="navbar-brand" href="index.html">Demo Application</a>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
