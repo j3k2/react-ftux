@@ -1,42 +1,57 @@
 import React, { Component } from "react";
 import EventEmitter from "wolfy87-eventemitter"
 
-const ee = new EventEmitter();
+//Action events:
+const FTUX_ACTION_END = 'ftuxActionEnd';
+const FTUX_ACTION_INCREASE = 'ftuxActionIncrease';
+const FTUX_ACTION_DECREASE = 'ftuxActionDecrease';
+//Reducer events:
+const FTUX_REDUCER_STEP = 'ftuxReducerStep';
+
+const events = new EventEmitter();
 
 class ReactFtux extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      total: this.props.total,
-      current: 0,
+      currentStep: 0,
       increaseStep: () => {
-        const currentStep = this.state.current + 1;
-        this.setState({ current: currentStep });
-        ee.trigger('update', [currentStep, this.props.total]);
-      }
+        const nextStep = this.state.currentStep + 1;
+        events.trigger(FTUX_REDUCER_STEP, [{currentStep: nextStep, total: this.props.total}]);
+      },
+      decreaseStep: () => {
+        const nextStep = this.state.currentStep - 1 > 0 ? this.state.currentStep - 1 : 0;
+        events.trigger(FTUX_REDUCER_STEP, [{currentStep: nextStep, total: this.props.total}]);
+      },
+      stepConfig: this.props.stepConfig
     };
-
   }
 
   componentDidMount() {
-    ee.on('increase', () => {
+    events.on(FTUX_ACTION_INCREASE, () => {
       this.state.increaseStep();
     });
-    ee.on('end', function(){
+    events.on(FTUX_ACTION_DECREASE, () => {
+      this.state.decreaseStep();
+    });
+    events.on(FTUX_ACTION_END, function(){
       console.log('ftux end');
     });
-    this.state.current = 0;
-    ee.trigger('update', [0, this.props.total]);
+    events.on(FTUX_REDUCER_STEP, (stepState) => {
+      this.setState(stepState);
+    });
+    events.trigger(FTUX_REDUCER_STEP, [{currentStep: 0, total: this.props.total}]);
   }
 
   componentWillUnmount() {
-    ee.off('increase');
+    events.off(FTUX_ACTION_INCREASE);
+    events.off(FTUX_ACTION_END);
+    events.off(FTUX_REDUCER_STEP);
   }
 
   render() {
     return (
       <div>
-        {/* {this.state.current} / {this.state.total} ({JSON.stringify(this.state)}) */}
       </div>
     );
   }
@@ -49,21 +64,30 @@ class ReactFtuxTooltip extends Component {
       display: false, 
       last: false,
       endFtux: () => {
-        ee.trigger('end');
-        this.setState({display: false});
+        events.trigger(FTUX_ACTION_END);
       },
       increaseStep: () => {
-        ee.trigger('increase');
+        events.trigger(FTUX_ACTION_INCREASE);
+      },
+      decreaseStep: () => {
+        events.trigger(FTUX_ACTION_DECREASE);
+      },
+      style: {
+        background: "black",
+        color: "white",
+        padding: 20,
+        position: "absolute",
+        "zIndex": 1
       }
     };
   }
 
-  checkCurrent(current, total) {
-    if (this.props.step === current) {
+  updateState(stepState) {
+    if (this.props.step === stepState.currentStep) {
       this.setState({
         display: true
       })
-    } else if (this.props.step === total - 1){
+    } else if (this.props.step === stepState.total - 1){
       this.setState({
         last: true
       });
@@ -75,41 +99,69 @@ class ReactFtuxTooltip extends Component {
         display: false
       });
     }
+    if (this.props.step === 0) {
+      this.setState({
+        first: true
+      });
+    }
+    if(this.props.tooltipStyle) {
+      this.setState({
+        style: Object.assign({}, this.state.style, this.props.tooltipStyle)
+      });
+    }
   }
 
   componentDidMount() {
-    this.checkCurrent(0, 1);
-    ee.on('update', (current, total) => {
-      this.checkCurrent(current, total);
+    this.updateState({currentStep: 0, total: 1});
+    events.on(FTUX_REDUCER_STEP, (stepState) => {
+      this.updateState(stepState);
     });
+    events.on(FTUX_ACTION_END, () => {
+      this.setState({
+        display: false
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    events.off(FTUX_ACTION_END);
+    events.off(FTUX_REDUCER_STEP);
   }
 
   render() {
     let buttons;
 
     if(this.state.last) {
-      buttons = (<button onClick={this.state.endFtux}>
+      buttons = (<div>
+                <button
+        onClick={this.state.decreaseStep}>
+          Previous
+        </button>
+        <button onClick={this.state.endFtux}>
         Done
-      </button>)
+      </button>
+      </div>)
     } else {
       buttons = (
+        <div>
+        {!this.state.first &&
+                <button
+                onClick={this.state.decreaseStep}>
+                  Previous
+                </button>
+        }
         <button 
         onClick={this.state.increaseStep}>
-        +
+        Next
       </button>
+        </div>
       )
     }
 
     return (
       <div>
         {this.state.display ?  (
-          <div style={{
-            background: "black",
-            color: "white",
-            padding: 20,
-            position: "absolute",
-            "zIndex": 1
-          }}>[{this.props.step}]
+          <div style={this.state.style}>[{this.props.step}{this.props.padding}]
           {buttons}
           </div>
         ) : null}
