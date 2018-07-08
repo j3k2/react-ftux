@@ -101,7 +101,7 @@ class ReactFtuxTooltip extends Component {
     };
   }
 
-  updateState(stepState, stepConfig) {
+  updateState(stepState, stepConfig, hide) {
     if (this.props.step === stepState.currentStep) {
       this.setState({
         display: true
@@ -121,6 +121,11 @@ class ReactFtuxTooltip extends Component {
         first: true
       });
     }
+    if (hide) {
+      this.setState({
+        display: false
+      });
+    }
     if(stepConfig && stepConfig[this.props.step.toString()]){
       this.setState(stepConfig[this.props.step.toString()]);
     }
@@ -136,9 +141,7 @@ class ReactFtuxTooltip extends Component {
       this.updateState(stepState, stepConfig);
     });
     events.on(FTUX_ACTION_END, () => {
-      this.setState({
-        display: false
-      });
+      this.updateState(store.stepState, store.stepConfig, true);
     });
     events.trigger(FTUX_REDUCER_STEP, [store.stepState, store.stepConfig]);
   }
