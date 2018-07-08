@@ -133,7 +133,7 @@ class ReactFtuxTooltip extends Component {
       this.updateState(stepState);
     });
     eventEmitter.on(FTUX_ACTION_END, () => {
-      this.updateState(ftuxStore, true);
+      this.updateState({}, true);
     });
     eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
   }
@@ -187,6 +187,5 @@ class ReactFtuxTooltip extends Component {
     )
   }
 }
-
 
 export { ReactFtux, ReactFtuxTooltip };
