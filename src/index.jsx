@@ -186,10 +186,6 @@ class ReactFtuxTooltip extends Component {
           <div style={Object.assign(this.state.style, {display: this.state.display ? null : 'none'})}>
             <div style={{display: "block"}}>
               <span>
-              [{this.props.step}]
-              </span>
-              <br/>
-              <span>
                 {this.state.stepTitle}
               </span>     
               <p>
