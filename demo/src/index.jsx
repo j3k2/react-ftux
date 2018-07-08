@@ -7,8 +7,11 @@ function Demo() {
     return (
         <div>
             <ReactFtux
-                total={5}
+                total={6}
                 disable={false}
+                ftuxConfig={{
+                    disableCloseButton: false
+                }}
                 ftuxEnd={() => {
                     console.log('ftux end');
                 }}></ReactFtux>
@@ -26,7 +29,7 @@ function Demo() {
                                 <span className="nav-link-text">Dashboard</span>
                             </a>
                         </li>
-                        <ReactFtuxTooltip step={3} tooltipStyle={{ left: 240 }}>
+                        <ReactFtuxTooltip step={3} tooltipStyle={{ left: 270 }} arrowPosition={{}} arrowDirection={{}}>
                             <span>Title 4</span>
                             <br />
                             <span>Content 4 lorem ipsum</span>
@@ -150,7 +153,7 @@ function Demo() {
                                 </div>
                             </form>
                         </li>
-                        <ReactFtuxTooltip step={4} tooltipStyle={{ top: 40, left: -260 }}>
+                        <ReactFtuxTooltip step={5} tooltipStyle={{ left: -370 }}>
                             <span>Title 5</span>
                             <br />
                             <span>Content 5 lorem ipsum</span>
@@ -162,12 +165,83 @@ function Demo() {
                     </ul>
                 </div>
             </nav>
-            <div className="content-wrapper">
-            </div>
-            <footer className="sticky-footer">
-                <div className="container">
+            <div className="content-wrapper" style={{ padding: 40 }}>
+                <h1>The postcapitalist paradigm of context and neosemioticist theory</h1>
+                <h2>Charles Geoffrey<br /> <br />
+                    <i>Department of Sociology, University of Southern North Dakota at<br />
+                        Hoople</i></h2>
+                <br /><br />
+                <h3>1. The cultural paradigm of reality and Sartreist existentialism</h3>
+                <p>&#8220;Class is dead,&#8221; says Lyotard. Therefore, the subject is interpolated into a<br />
+                    subcapitalist narrative that includes reality as a whole. </p>
+                <p>&#8220;Society is fundamentally unattainable,&#8221; says Marx; however, according to<br />
+                    Drucker<a href="#fn1">[1]</a> , it is not so much society that is fundamentally<br />
+                    unattainable, but rather the fatal flaw, and some would say the genre, of<br />
+                    society. Bataille promotes the use of neosemioticist theory to attack class<br />
+                    divisions. However, the characteristic theme of McElwaine&#8217;s<a
+                        href="#fn2">[2]</a> model of Sartreist existentialism is the futility, and<br />
+                    subsequent rubicon, of postcapitalist class. </p>
+                <p>Sartre uses the term &#8216;neosemioticist theory&#8217; to denote the role of the<br />
+                    writer as participant. In a sense, Sartreist existentialism states that context<br />
+                    must come from the masses, given that sexuality is interchangeable with truth.
+                </p>
+                <p>Foucault uses the term &#8216;dialectic socialism&#8217; to denote a mythopoetical<br />
+                    reality. Therefore, the premise of neosemioticist theory holds that sexuality<br />
+                    is responsible for the status quo. </p>
+                <p>If neotextual discourse holds, we have to choose between Sartreist<br />
+                    existentialism and semioticist postcultural theory. However, Sontag suggests<br />
+                    the use of textual narrative to read and deconstruct society. </p>
+                <p>A number of deappropriations concerning the postcapitalist paradigm of<br />
+                    context may be found. But Sartre promotes the use of subcapitalist discourse to<br />
+                    challenge capitalism. </p>
+                <h3>2. Consensuses of genre</h3>
+                <p>In the works of Rushdie, a predominant concept is the concept of modernist<br />
+                    culture. Any number of patriarchialisms concerning not narrative, but<br />
+                    prenarrative exist. Thus, Sartreist existentialism states that language is used<br />
+                    to oppress the proletariat. </p>
+                <p>&#8220;Sexual identity is part of the absurdity of narrativity,&#8221; says Lacan. A<br />
+                    number of theories concerning neosemioticist theory may be revealed. But the<br />
+                    primary theme of the works of Rushdie is a self-sufficient whole. </p>
+                <p>The subject is contextualised into a neodeconstructive semanticist theory<br />
+                    that includes language as a reality. It could be said that von Junz<a
+                        href="#fn3">[3]</a> implies that the works of Rushdie are reminiscent of<br />
+                    Pynchon. </p>
+                <p>Several deappropriations concerning the common ground between culture and<br />
+                    sexual identity exist. However, Sartre uses the term &#8216;the postcapitalist<br />
+                    paradigm of context&#8217; to denote not conceptualism, as subcultural theory<br />
+                    suggests, but neoconceptualism. </p>
+                <p>The subject is interpolated into a postcapitalist paradigm of context that<br />
+                    includes language as a whole. Therefore, any number of narratives concerning<br />
+                    neosemioticist theory may be found. </p>
+                <p>The premise of Sartreist existentialism holds that the State is capable of<br />
+                    significant form. In a sense, Bataille suggests the use of neosemioticist<br />
+                    theory to analyse society. </p>
+                <hr width="50%" noshade />
+                <p><a href="#" id="fn1"> 1. Drucker, R. M. (1982)<br />
+                    <i>Reinventing Socialist realism: Modern theory, Marxism and the postcapitalist<br />
+                        paradigm of context.</i> Oxford University Press</a></p>
+                <p><a href="#" id="fn2"> 2. McElwaine, N. ed. (1999) <i>The postcapitalist paradigm of<br />
+                    context in the works of Rushdie.</i> Schlangekraft</a></p>
+                <p><a href="#" id="fn3"> 3. von Junz, W. T. P. (1976) <i>The Context of Failure: The<br />
+                    postcapitalist paradigm of context in the works of Glass.</i> O&#8217;Reilly &#038;<br />
+                    Associates</a></p>
+                <ReactFtuxTooltip step={4} tooltipStyle={{ top: -160 }}>
+                    <span>Title 5</span>
+                    <br />
+                    <span>Content 5 lorem ipsum</span>
+                </ReactFtuxTooltip>
+                <a href="#">
+                    <i style={{ fontSize: 32 }} className="fa fa-fw fa-envelope"></i>
+                </a>
+                <a href="#">
+                    <i style={{ fontSize: 32 }} className="fa fa-fw fa-facebook-official"></i>
+                </a>
+                <a href="#">
+                    <i style={{ fontSize: 32 }} className="fa fa-fw fa-twitter-square"></i>
+                </a>
+                <div>
                 </div>
-            </footer>
+            </div>
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fa fa-angle-up"></i>
             </a>
@@ -188,7 +262,7 @@ function Demo() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
