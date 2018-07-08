@@ -36,7 +36,7 @@ class ReactFtux extends Component {
   render() {
     return (
       <div>
-        {this.state.current} / {this.state.total} ({JSON.stringify(this.state)})
+        {/* {this.state.current} / {this.state.total} ({JSON.stringify(this.state)}) */}
       </div>
     );
   }
@@ -89,7 +89,7 @@ class ReactFtuxTooltip extends Component {
 
     if(this.state.last) {
       buttons = (<button onClick={this.state.endFtux}>
-        End
+        Done
       </button>)
     } else {
       buttons = (
@@ -100,30 +100,19 @@ class ReactFtuxTooltip extends Component {
       )
     }
 
-
     return (
       <div>
-        <div>
-        {this.props.children}
-        </div>
-        <div style={{
-          position: "relative"
-        }}>
-          {this.state.display ? (
-            <div style={{
-              background: "black",
-              color: "white",
-              width: 80,
-              padding: 20,
-              position: "absolute",
-              width: 128,
-              height: 48,
-              "zIndex": 1
-            }}>[{this.props.step}]
-            {buttons}
-            </div>
-          ) : null}
-        </div>
+        {this.state.display ?  (
+          <div style={{
+            background: "black",
+            color: "white",
+            padding: 20,
+            position: "absolute",
+            "zIndex": 1
+          }}>[{this.props.step}]
+          {buttons}
+          </div>
+        ) : null}
       </div>
     )
   }
