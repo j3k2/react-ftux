@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EventEmitter from "wolfy87-eventemitter"
+// import '../src/index.css';
 
 //Action events:
 const FTUX_ACTION_END = 'ftuxActionEnd';
@@ -178,9 +179,8 @@ class ReactFtuxTooltip extends Component {
     }
 
     return (
-      <div >
-        {this.state.display ?  (
-          <div style={this.state.style}>
+      <div>
+          <div style={Object.assign(this.state.style, {display: this.state.display ? null : 'none'})}>
             <div style={{display: "block"}}>
               <span>
               [{this.props.step}]
@@ -197,7 +197,6 @@ class ReactFtuxTooltip extends Component {
               {buttons}
             </div>
           </div>
-        ) : null}
       </div>
     )
   }
