@@ -3,8 +3,6 @@ import { render } from "react-dom";
 import { ReactFtux, ReactFtuxTooltip } from "../../lib";
 // import "./styles.css";
 
-
-
 function Demo() {
     return (
         <div>

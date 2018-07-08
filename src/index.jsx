@@ -55,6 +55,7 @@ class ReactFtux extends Component {
 
   componentWillUnmount() {
     events.off(FTUX_ACTION_INCREASE);
+    events.off(FTUX_ACTION_DECREASE);
     events.off(FTUX_ACTION_END);
     events.off(FTUX_REDUCER);
   }
