@@ -91,9 +91,9 @@ class ReactFtuxTooltip extends Component {
         background: "black",
         color: "white",
         padding: 20,
-        position: "absolute",
-        "zIndex": 1,
-        "borderRadius": 2,
+        position: "fixed",
+        "borderRadius": 3,
+        "boxShadow": "4px 4px 5px 0px grey",
         width: 400
       },
       stepTitle: 'Step title',
@@ -179,7 +179,7 @@ class ReactFtuxTooltip extends Component {
     }
 
     return (
-      <div>
+      <div style={{transform: 'scale(1)', 'zIndex': 99}}>
           <div style={Object.assign(this.state.style, {display: this.state.display ? null : 'none'})}>
             <div style={{display: "block"}}>
               <span>

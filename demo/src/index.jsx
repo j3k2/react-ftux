@@ -47,7 +47,7 @@ function Demo() {
                     </li>
                 </ul>
                 <ul className="navbar-nav ml-auto">
-                    <ReactFtuxTooltip step={0} tooltipStyle={{top: 60}}>
+                    <ReactFtuxTooltip step={0} tooltipStyle={{top:40}}>
                     </ReactFtuxTooltip>
                     <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -85,7 +85,7 @@ function Demo() {
                         <a className="dropdown-item small" href="#">View all messages</a>
                     </div>
                     </li>
-                    <ReactFtuxTooltip step={1} tooltipStyle={{top: 60}}>
+                    <ReactFtuxTooltip step={1} tooltipStyle={{top:40}}>
                     </ReactFtuxTooltip>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -130,7 +130,7 @@ function Demo() {
                             <a className="dropdown-item small" href="#">View all alerts</a>
                         </div>
                     </li>
-                    <ReactFtuxTooltip step={2} tooltipStyle={{top: 60}}>
+                    <ReactFtuxTooltip step={2} tooltipStyle={{top:40}}>
                     </ReactFtuxTooltip>
                     <li className="nav-item">
                     <form className="form-inline my-2 my-lg-0 mr-lg-2">
