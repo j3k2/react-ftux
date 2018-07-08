@@ -6,28 +6,7 @@ import { ReactFtux, ReactFtuxTooltip } from "../../lib";
 function Demo() {
     return (
         <div>
-            <ReactFtux total={5} stepConfig={{
-                0: {
-                    stepTitle: 'Step 1',
-                    stepContent: 'Step 1 Content lorem ipsum'
-                },
-                1: {
-                    stepTitle: 'Step 2',
-                    stepContent: 'Step 2 Content lorem ipsum'
-                },
-                2: {
-                    stepTitle: 'Step 3',
-                    stepContent: 'Step 3 Content lorem ipsum'
-                },
-                3: {
-                    stepTitle: 'Step 4',
-                    stepContent: 'Step 4 Content'
-                },
-                4: {
-                    stepTitle: 'Step 5',
-                    stepContent: 'Step 5 Content'
-                }
-            }}></ReactFtux>
+            <ReactFtux total={5}></ReactFtux>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
                 <a className="navbar-brand" href="index.html">Demo Application</a>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -43,6 +22,9 @@ function Demo() {
                     </a>
                     </li>
                     <ReactFtuxTooltip step={3} tooltipStyle={{left: 240}}>
+                    <span>Title 4</span>
+                    <br/>
+                    <span>Content 4 lorem ipsum</span>
                     </ReactFtuxTooltip>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                     <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
@@ -58,6 +40,9 @@ function Demo() {
                 </ul>
                 <ul className="navbar-nav ml-auto">
                     <ReactFtuxTooltip step={0} tooltipStyle={{top:40}}>
+                    <span>Title 1</span>
+                    <br/>
+                    <span>Content 1 lorem ipsum</span>
                     </ReactFtuxTooltip>
                     <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,6 +81,9 @@ function Demo() {
                     </div>
                     </li>
                     <ReactFtuxTooltip step={1} tooltipStyle={{top:40}}>
+                    <span>Title 2</span>
+                    <br/>
+                    <span>Content 2 lorem ipsum</span>
                     </ReactFtuxTooltip>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -141,6 +129,9 @@ function Demo() {
                         </div>
                     </li>
                     <ReactFtuxTooltip step={2} tooltipStyle={{top:40}}>
+                    <span>Title 3</span>
+                    <br/>
+                    <span>Content 3 lorem ipsum</span>
                     </ReactFtuxTooltip>
                     <li className="nav-item">
                     <form className="form-inline my-2 my-lg-0 mr-lg-2">
@@ -155,6 +146,9 @@ function Demo() {
                     </form>
                     </li>
                     <ReactFtuxTooltip step={4} tooltipStyle={{top:40, left: -200}}>
+                    <span>Title 5</span>
+                    <br/>
+                    <span>Content 5 lorem ipsum</span>
                     </ReactFtuxTooltip>
                     <li className="nav-item">
                     <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
