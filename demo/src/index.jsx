@@ -30,9 +30,9 @@ function Demo() {
                             </a>
                         </li>
                         <ReactFtuxTooltip step={3} tooltipStyle={{ left: 270 }} pointerDirection="left">
-                            <span>Title 4</span>
+                            <h5>Pages</h5>
                             <br />
-                            <span>Content 4 lorem ipsum</span>
+                            <span>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</span>
                         </ReactFtuxTooltip>
                         <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
                             <a className="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
@@ -48,9 +48,9 @@ function Demo() {
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <ReactFtuxTooltip step={0} tooltipStyle={{ top: 50, left: -8 }}>
-                            <span>Title 1</span>
+                            <h5>Messages</h5>
                             <br />
-                            <span>Content 1 lorem ipsum</span>
+                            <span>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</span>
                         </ReactFtuxTooltip>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,9 +89,9 @@ function Demo() {
                             </div>
                         </li>
                         <ReactFtuxTooltip step={1} tooltipStyle={{ top: 50, left: -8 }}>
-                            <span>Title 2</span>
+                            <h5>Alerts</h5>
                             <br />
-                            <span>Content 2 lorem ipsum</span>
+                            <span>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</span>
                         </ReactFtuxTooltip>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -137,9 +137,9 @@ function Demo() {
                             </div>
                         </li>
                         <ReactFtuxTooltip step={2} tooltipStyle={{ top: 50, left: -8 }}>
-                            <span>Title 3</span>
+                            <h5>Search</h5>
                             <br />
-                            <span>Content 3 lorem ipsum</span>
+                            <span>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</span>
                         </ReactFtuxTooltip>
                         <li className="nav-item">
                             <form className="form-inline my-2 my-lg-0 mr-lg-2">
@@ -153,15 +153,16 @@ function Demo() {
                                 </div>
                             </form>
                         </li>
-                        <ReactFtuxTooltip pointerDirection="right" step={5} tooltipStyle={{ top: -4, left: -370 }}>
-                            <span>Title 5</span>
-                            <br />
-                            <span>Content 5 lorem ipsum</span>
-                        </ReactFtuxTooltip>
+
                         <li className="nav-item">
                             <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
                                 <i className="fa fa-fw fa-sign-out"></i>Logout</a>
                         </li>
+                        <ReactFtuxTooltip pointerDirection="right" step={5} tooltipStyle={{ top: -5, right: 100 }}>
+                            <h5>Logout</h5>
+                            <br />
+                            <span>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</span>
+                        </ReactFtuxTooltip>
                     </ul>
                 </div>
             </nav>
@@ -225,10 +226,10 @@ function Demo() {
                 <p><a href="#" id="fn3"> 3. von Junz, W. T. P. (1976) <i>The Context of Failure: The<br />
                     postcapitalist paradigm of context in the works of Glass.</i> O&#8217;Reilly &#038;<br />
                     Associates</a></p>
-                <ReactFtuxTooltip scrollTo step={4} pointerDirection="below" tooltipStyle={{ top: -160 }}>
-                    <span>Title 5</span>
+                    <ReactFtuxTooltip scrollTo step={4} pointerDirection="below" tooltipStyle={{ top: -330 }}>
+                    <h5>Share</h5>
                     <br />
-                    <span>Content 5 lorem ipsum</span>
+                    <span>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</span>
                 </ReactFtuxTooltip>
                 <div style={{
                     border: 'solid 1px black',

@@ -71,9 +71,16 @@ class ReactFtux extends Component {
   }
 }
 
+const StyledAnchor = styled.span`
+  :hover{
+    cursor: pointer;
+    color: grey;
+  }
+`;
+
 const StyledButton = styled.button`
   margin: 4px;
-  width: 128px;
+  width: 64px;
   height: 32px;
   background-color: black;
   border: solid 1px white;
@@ -81,12 +88,8 @@ const StyledButton = styled.button`
   color: white;
   :hover{
     cursor: pointer;
-  }
-`;
-
-const StyledAnchor = styled.span`
-  :hover{
-    cursor: pointer;
+    color: grey;
+    border-color: grey;
   }
 `;
 
@@ -146,8 +149,8 @@ class ReactFtuxTooltip extends Component {
         padding: 20,
         position: "fixed",
         borderRadius: 2,
-        // boxShadow: "4px 4px 5px 0px grey",
-        width: 360,
+        minWidth: 412,
+        width: 412,
         display: 'block'
       }
     };
@@ -217,7 +220,7 @@ class ReactFtuxTooltip extends Component {
       nav = (<div>
         <StyledButton
           onClick={this.state.triggerDecreaseStep}>
-          Previous
+          Prev
         </StyledButton>
         <StyledButton
           onClick={this.state.triggerEndFtux}>
@@ -229,7 +232,7 @@ class ReactFtuxTooltip extends Component {
         {!this.state.first &&
           <StyledButton
             onClick={this.state.triggerDecreaseStep}>
-            Previous
+            Prev
           </StyledButton>
         }
         <StyledButton
@@ -251,7 +254,7 @@ class ReactFtuxTooltip extends Component {
       <div ref="tooltip" style={{ transform: 'scale(1)', 'zIndex': 999 }}>
         <div style={Object.assign(this.state.style, { display: this.state.display ? null : 'none' })}>
           {pointer}
-          <div style={{ display: "block" }}>
+          <div style={{ display: "block", padding: 10 }}>
             {this.props.children}
           </div>
           <StyledAnchor
@@ -259,6 +262,7 @@ class ReactFtuxTooltip extends Component {
               position: 'absolute',
               top: 0,
               right: 6,
+              fontSize: 24,
               display: this.state.disableCloseButton ? 'none' : null
             }}
             onClick={this.state.triggerEndFtux}>
