@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 import ee from "wolfy87-eventemitter";
 import styled from 'styled-components';
 
@@ -172,6 +173,10 @@ class ReactFtuxTooltip extends Component {
       this.setState({
         display: true
       })
+      if(this.props.scrollTo) {
+        const tooltipRef = ReactDOM.findDOMNode(this.refs.tooltip);
+        window.scrollTo(0, tooltipRef.offsetTop);
+      }
     } else {
       this.setState({
         display: false
@@ -243,7 +248,7 @@ class ReactFtuxTooltip extends Component {
     </div>);
 
     return (
-      <div style={{ transform: 'scale(1)', 'zIndex': 99 }}>
+      <div ref="tooltip" style={{ transform: 'scale(1)', 'zIndex': 999 }}>
         <div style={Object.assign(this.state.style, { display: this.state.display ? null : 'none' })}>
           {pointer}
           <div style={{ display: "block" }}>

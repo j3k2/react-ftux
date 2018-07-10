@@ -225,7 +225,7 @@ function Demo() {
                 <p><a href="#" id="fn3"> 3. von Junz, W. T. P. (1976) <i>The Context of Failure: The<br />
                     postcapitalist paradigm of context in the works of Glass.</i> O&#8217;Reilly &#038;<br />
                     Associates</a></p>
-                <ReactFtuxTooltip step={4} pointerDirection="below" tooltipStyle={{ top: -160 }}>
+                <ReactFtuxTooltip scrollTo step={4} pointerDirection="below" tooltipStyle={{ top: -160 }}>
                     <span>Title 5</span>
                     <br />
                     <span>Content 5 lorem ipsum</span>
