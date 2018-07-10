@@ -8,12 +8,67 @@ import styled from 'styled-components';
 const FTUX_ACTION_END = 'ftuxActionEnd';
 const FTUX_ACTION_INCREASE = 'ftuxActionIncrease';
 const FTUX_ACTION_DECREASE = 'ftuxActionDecrease';
-//Reducer events:
-const FTUX_REDUCER = 'ftuxReducer';
+//Updater events:
+const FTUX_UPDATER = 'ftuxUpdater';
 
 const eventEmitter = new ee();
 
 let ftuxStore = {};
+
+class ReactFtux extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.increaseStep = () => {
+      const nextStep = ftuxStore.currentStep + 1;
+      ftuxStore = { currentStep: nextStep, total: this.props.total, config: this.props.ftuxConfig };
+      eventEmitter.trigger(FTUX_UPDATER, [ftuxStore]);
+    };
+
+    this.decreaseStep = () => {
+      const nextStep = ftuxStore.currentStep - 1 > 0 ? ftuxStore.currentStep - 1 : 0;
+      ftuxStore = { currentStep: nextStep, total: this.props.total, config: this.props.ftuxConfig };
+      eventEmitter.trigger(FTUX_UPDATER, [ftuxStore]);
+    }
+
+    this.init = () => {
+      ftuxStore = { currentStep: 0, total: this.props.total, config: this.props.ftuxConfig };
+      eventEmitter.trigger(FTUX_UPDATER, [ftuxStore]);
+    }
+  }
+
+  componentDidMount() {
+    eventEmitter.on(FTUX_ACTION_INCREASE, () => {
+      this.increaseStep();
+    });
+    eventEmitter.on(FTUX_ACTION_DECREASE, () => {
+      this.decreaseStep();
+    });
+    eventEmitter.on(FTUX_ACTION_END, () => {
+      this.props.ftuxEnd();
+    });
+    eventEmitter.on(FTUX_UPDATER, (stepState) => {
+      this.setState(stepState);
+    });
+    if (!this.props.disable) {
+      this.init();
+    }
+  }
+
+  componentWillUnmount() {
+    eventEmitter.off(FTUX_ACTION_INCREASE);
+    eventEmitter.off(FTUX_ACTION_DECREASE);
+    eventEmitter.off(FTUX_ACTION_END);
+    eventEmitter.off(FTUX_UPDATER);
+  }
+
+  render() {
+    return (
+      <div>
+      </div>
+    );
+  }
+}
 
 const StyledButton = styled.button`
   margin: 4px;
@@ -34,60 +89,39 @@ const StyledAnchor = styled.span`
   }
 `;
 
-class ReactFtux extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.increaseStep = () => {
-      const nextStep = ftuxStore.currentStep + 1;
-      ftuxStore = { currentStep: nextStep, total: this.props.total, config: this.props.ftuxConfig};
-      eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
-    };
+const PointerBase = styled.div`
+  width: 0px;
+  height: 0px;
+  position: absolute;
+`;
 
-    this.decreaseStep = () => {
-      const nextStep = ftuxStore.currentStep - 1 > 0 ? ftuxStore.currentStep - 1 : 0;
-      ftuxStore = { currentStep: nextStep, total: this.props.total, config: this.props.ftuxConfig};
-      eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
-    }
+const PointerAbove = PointerBase.extend`
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 16px solid black;
+  top: -16px;
+`;
 
-    this.init = () => {
-      ftuxStore = { currentStep: 0, total: this.props.total, config: this.props.ftuxConfig};
-      eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
-    }
-  }
+const PointerBelow = PointerBase.extend`
+  border-left: 8px solid transparent; 
+  border-right: 8px solid transparent; 
+  border-top: 16px solid black;
+  top: 100%;
+`;
 
-  componentDidMount() {
-    eventEmitter.on(FTUX_ACTION_INCREASE, () => {
-      this.increaseStep();
-    });
-    eventEmitter.on(FTUX_ACTION_DECREASE, () => {
-      this.decreaseStep();
-    });
-    eventEmitter.on(FTUX_ACTION_END, () => {
-      this.props.ftuxEnd();
-    });
-    eventEmitter.on(FTUX_REDUCER, (stepState) => {
-      this.setState(stepState);
-    });
-    if (!this.props.disable) {
-      this.init();
-    }
-  }
+const PointerLeft = PointerBase.extend`
+  border-top: 8px solid transparent; 
+  border-bottom: 8px solid transparent;
+  border-right: 16px solid black; 
+  left: -16px;
+`;
 
-  componentWillUnmount() {
-    eventEmitter.off(FTUX_ACTION_INCREASE);
-    eventEmitter.off(FTUX_ACTION_DECREASE);
-    eventEmitter.off(FTUX_ACTION_END);
-    eventEmitter.off(FTUX_REDUCER);
-  }
-
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+const PointerRight = PointerBase.extend`
+  border-top: 8px solid transparent; 
+  border-bottom: 8px solid transparent;
+  border-left: 16px solid black;  
+  right: -16px;
+`;
 
 class ReactFtuxTooltip extends Component {
   constructor(props) {
@@ -144,13 +178,11 @@ class ReactFtuxTooltip extends Component {
       });
     }
 
-    if(stepState.config && stepState.config.disableCloseButton){
+    if (stepState.config && stepState.config.disableCloseButton) {
       this.setState({
         disableCloseButton: true
       });
     }
-
-    //tooltip props -> setState -> state.arrowPosition, state.arrowDirection, etc. -> render
 
     if (this.props.tooltipStyle) {
       this.setState({
@@ -160,25 +192,24 @@ class ReactFtuxTooltip extends Component {
   }
 
   componentDidMount() {
-    eventEmitter.on(FTUX_REDUCER, (stepState) => {
+    eventEmitter.on(FTUX_UPDATER, (stepState) => {
       this.updateState(stepState);
     });
     eventEmitter.on(FTUX_ACTION_END, () => {
       this.updateState({}, true);
     });
-    eventEmitter.trigger(FTUX_REDUCER, [ftuxStore]);
+    eventEmitter.trigger(FTUX_UPDATER, [ftuxStore]);
   }
 
   componentWillUnmount() {
     eventEmitter.off(FTUX_ACTION_END);
-    eventEmitter.off(FTUX_REDUCER);
+    eventEmitter.off(FTUX_UPDATER);
   }
 
   render() {
-    let buttons;
-
+    let nav;
     if (this.state.last) {
-      buttons = (<div>
+      nav = (<div>
         <StyledButton
           onClick={this.state.triggerDecreaseStep}>
           Previous
@@ -189,7 +220,7 @@ class ReactFtuxTooltip extends Component {
       </StyledButton>
       </div>);
     } else {
-      buttons = (<div>
+      nav = (<div>
         {!this.state.first &&
           <StyledButton
             onClick={this.state.triggerDecreaseStep}>
@@ -203,38 +234,33 @@ class ReactFtuxTooltip extends Component {
       </div>);
     }
 
+    let pointer = (<div>
+      {this.props.pointerDirection === 'above' ? <PointerAbove></PointerAbove> : null}
+      {this.props.pointerDirection === 'below' ? <PointerBelow></PointerBelow> : null}
+      {this.props.pointerDirection === 'left' ? <PointerLeft></PointerLeft> : null}
+      {this.props.pointerDirection === 'right' ? <PointerRight></PointerRight> : null}
+      {!this.props.pointerDirection ? <PointerAbove></PointerAbove> : null}
+    </div>);
+
     return (
       <div style={{ transform: 'scale(1)', 'zIndex': 99 }}>
         <div style={Object.assign(this.state.style, { display: this.state.display ? null : 'none' })}>
-          <div
-            className='arrow'
-            style={{
-              position: 'absolute',
-              top: -16,
-              width: 0,
-              height: 0,
-              borderLeft: '8px solid transparent',
-              borderRight: '8px solid transparent',
-              borderBottom: '16px solid black'
-            }}>
-          </div>
+          {pointer}
           <div style={{ display: "block" }}>
             {this.props.children}
           </div>
-          {this.state.disableCloseButton ? null : (
           <StyledAnchor
             style={{
               position: 'absolute',
               top: 0,
-              right: 6
+              right: 6,
+              display: this.state.disableCloseButton ? 'none' : null
             }}
             onClick={this.state.triggerEndFtux}>
             &#x2715;
             </StyledAnchor>
-          )}
-
           <div style={{ float: "right", "paddingTop": 10 }}>
-            {buttons}
+            {nav}
           </div>
         </div>
       </div>

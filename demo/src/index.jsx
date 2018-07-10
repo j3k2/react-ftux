@@ -29,7 +29,7 @@ function Demo() {
                                 <span className="nav-link-text">Dashboard</span>
                             </a>
                         </li>
-                        <ReactFtuxTooltip step={3} tooltipStyle={{ left: 270 }} arrowPosition={{}} arrowDirection={{}}>
+                        <ReactFtuxTooltip step={3} tooltipStyle={{ left: 270 }} pointerDirection="left">
                             <span>Title 4</span>
                             <br />
                             <span>Content 4 lorem ipsum</span>
@@ -153,7 +153,7 @@ function Demo() {
                                 </div>
                             </form>
                         </li>
-                        <ReactFtuxTooltip step={5} tooltipStyle={{ left: -370 }}>
+                        <ReactFtuxTooltip pointerDirection="right" step={5} tooltipStyle={{ top: -4, left: -370 }}>
                             <span>Title 5</span>
                             <br />
                             <span>Content 5 lorem ipsum</span>
@@ -216,7 +216,7 @@ function Demo() {
                 <p>The premise of Sartreist existentialism holds that the State is capable of<br />
                     significant form. In a sense, Bataille suggests the use of neosemioticist<br />
                     theory to analyse society. </p>
-                <hr width="50%" noshade />
+                <hr width="50%" />
                 <p><a href="#" id="fn1"> 1. Drucker, R. M. (1982)<br />
                     <i>Reinventing Socialist realism: Modern theory, Marxism and the postcapitalist<br />
                         paradigm of context.</i> Oxford University Press</a></p>
@@ -225,21 +225,27 @@ function Demo() {
                 <p><a href="#" id="fn3"> 3. von Junz, W. T. P. (1976) <i>The Context of Failure: The<br />
                     postcapitalist paradigm of context in the works of Glass.</i> O&#8217;Reilly &#038;<br />
                     Associates</a></p>
-                <ReactFtuxTooltip step={4} tooltipStyle={{ top: -160 }}>
+                <ReactFtuxTooltip step={4} pointerDirection="below" tooltipStyle={{ top: -160 }}>
                     <span>Title 5</span>
                     <br />
                     <span>Content 5 lorem ipsum</span>
                 </ReactFtuxTooltip>
-                <a href="#">
-                    <i style={{ fontSize: 32 }} className="fa fa-fw fa-envelope"></i>
-                </a>
-                <a href="#">
-                    <i style={{ fontSize: 32 }} className="fa fa-fw fa-facebook-official"></i>
-                </a>
-                <a href="#">
-                    <i style={{ fontSize: 32 }} className="fa fa-fw fa-twitter-square"></i>
-                </a>
-                <div>
+                <div style={{
+                    border: 'solid 1px black',
+                    width: 180,
+                    padding: 8,
+                    borderRadius: 3
+                    }}>
+                    <i style={{fontSize: 28}} className="fa fa-fw fa-share-square-o"></i>
+                    <a href="#">
+                        <i style={{ fontSize: 32 }} className="fa fa-fw fa-envelope"></i>
+                    </a>
+                    <a href="#">
+                        <i style={{ fontSize: 32 }} className="fa fa-fw fa-facebook-official"></i>
+                    </a>
+                    <a href="#">
+                        <i style={{ fontSize: 32 }} className="fa fa-fw fa-twitter-square"></i>
+                    </a>
                 </div>
             </div>
             <a className="scroll-to-top rounded" href="#page-top">
