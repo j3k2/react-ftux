@@ -252,7 +252,7 @@ class ReactFtuxTooltip extends Component {
 
     return (
       <div ref="tooltip" style={{ transform: 'scale(1)', 'zIndex': 999 }}>
-        <div style={Object.assign(this.state.style, { display: this.state.display ? null : 'none' })}>
+        <div style={Object.assign({}, this.state.style, { display: this.state.display ? null : 'none' })}>
           {pointer}
           <div style={{ display: "block", padding: 10 }}>
             {this.props.children}
