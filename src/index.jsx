@@ -84,7 +84,7 @@ const StyledButton = styled.button`
   height: 32px;
   background-color: black;
   border: solid 1px white;
-  border-radius: 2px;
+  border-radius: 5px;
   color: white;
   :hover{
     cursor: pointer;
@@ -148,7 +148,7 @@ class ReactFtuxTooltip extends Component {
         color: "white",
         padding: 20,
         position: "fixed",
-        borderRadius: 2,
+        borderRadius: 5,
         minWidth: 412,
         width: 412,
         display: 'block'
