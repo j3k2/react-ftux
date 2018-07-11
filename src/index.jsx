@@ -46,7 +46,9 @@ class ReactFtux extends Component {
       this.decreaseStep();
     });
     eventEmitter.on(FTUX_ACTION_END, () => {
-      this.props.ftuxEnd();
+      if(this.props.ftuxEnd) {
+        this.props.ftuxEnd();
+      }
     });
     eventEmitter.on(FTUX_UPDATER, (stepState) => {
       this.setState(stepState);
