@@ -1,0 +1,8 @@
+pages:
+  stage: deploy
+  script:
+  artifacts:
+    paths:
+    - demo
+  only:
+  - master
