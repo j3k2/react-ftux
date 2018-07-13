@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { ReactFtux, ReactFtuxTooltip } from "../../lib";
+import { ReactFtux, ReactFtuxTooltip } from "../../lib/bundle";
 // import "./styles.css";
 
 function Demo() {
@@ -9,12 +9,21 @@ function Demo() {
             <ReactFtux
                 total={6}
                 disable={false}
-                ftuxConfig={{
-                    disableCloseButton: false
+                tooltipSettings={{
+                    disableCloseButton: false,
+                    disableKeydownListener: false,
+                    animationDuration: 0.4,
+                    // backgroundColor: 'red',
+                    // foregroundColor: 'green',
+                    // highlightColor: 'yellow',
+                    tooltipWidth: 400,
+                    // nextLabel: '>',
+                    // prevLabel: '<',
+                    // doneLabel: 'x'
                 }}
                 ftuxEnd={() => {
                     console.log('ftux end');
-                }}></ReactFtux>
+                }}/>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
                 <a className="navbar-brand" href="index.html">Demo Application</a>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -29,7 +38,10 @@ function Demo() {
                                 <span className="nav-link-text">Dashboard</span>
                             </a>
                         </li>
-                        <ReactFtuxTooltip step={3} tooltipStyle={{ left: 270 }} pointerDirection="left">
+                        <ReactFtuxTooltip 
+                            scrollToTop 
+                            step={3} 
+                            pointerDirection="left">
                             <h5>Pages</h5>
                             <br />
                             <span>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</span>
@@ -47,7 +59,7 @@ function Demo() {
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
-                        <ReactFtuxTooltip step={0} tooltipStyle={{ top: 50, left: -8 }}>
+                        <ReactFtuxTooltip step={0}>
                             <h5>Messages</h5>
                             <br />
                             <span>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</span>
@@ -88,7 +100,7 @@ function Demo() {
                                 <a className="dropdown-item small" href="#">View all messages</a>
                             </div>
                         </li>
-                        <ReactFtuxTooltip step={1} tooltipStyle={{ top: 50, left: -8 }}>
+                        <ReactFtuxTooltip step={1}>
                             <h5>Alerts</h5>
                             <br />
                             <span>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</span>
@@ -136,7 +148,9 @@ function Demo() {
                                 <a className="dropdown-item small" href="#">View all alerts</a>
                             </div>
                         </li>
-                        <ReactFtuxTooltip step={2} tooltipStyle={{ top: 50, left: -8 }}>
+                        <ReactFtuxTooltip
+                            step={2}
+                            pointerDirection="right">
                             <h5>Search</h5>
                             <br />
                             <span>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</span>
@@ -153,16 +167,16 @@ function Demo() {
                                 </div>
                             </form>
                         </li>
-
-                        <li className="nav-item">
-                            <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
-                                <i className="fa fa-fw fa-sign-out"></i>Logout</a>
-                        </li>
-                        <ReactFtuxTooltip pointerDirection="right" step={5} tooltipStyle={{ top: -5, right: 100 }}>
+                        <ReactFtuxTooltip pointerDirection="right" scrollTo step={5}>
                             <h5>Logout</h5>
                             <br />
                             <span>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</span>
                         </ReactFtuxTooltip>
+                        <li className="nav-item">
+                            <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
+                                <i className="fa fa-fw fa-sign-out"></i>Logout</a>
+                        </li>
+
                     </ul>
                 </div>
             </nav>
@@ -226,7 +240,10 @@ function Demo() {
                 <p><a href="#" id="fn3"> 3. von Junz, W. T. P. (1976) <i>The Context of Failure: The<br />
                     postcapitalist paradigm of context in the works of Glass.</i> O&#8217;Reilly &#038;<br />
                     Associates</a></p>
-                    <ReactFtuxTooltip scrollTo step={4} pointerDirection="below" tooltipStyle={{ top: -330 }}>
+                    <ReactFtuxTooltip
+                         scrollTo
+                         step={4} 
+                         pointerDirection="below">
                     <h5>Share</h5>
                     <br />
                     <span>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</span>
