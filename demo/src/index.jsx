@@ -1,7 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
 import { ReactFtux, ReactFtuxTooltip } from "../../lib/bundle";
-// import "./styles.css";
 
 function Demo() {
     return (
@@ -9,24 +8,25 @@ function Demo() {
             <ReactFtux
                 total={6}
                 disable={false}
-                tooltipSettings={{}}
-                // tooltipSettings={{
-                //     disableCloseButton: false,
-                //     disableKeydownListener: false,
-                //     animationDuration: 0.4,
-                //     // backgroundColor: 'red',
-                //     // foregroundColor: 'green',
-                //     // highlightColor: 'yellow',
-                //     tooltipWidth: 400,
-                //     // nextLabel: '>',
-                //     // prevLabel: '<',
-                //     // doneLabel: 'x'
-                // }}
+                tooltipSettings={{
+                    disableCloseButton: false,
+                    disableKeydownListener: false,
+                    animationDuration: 0.4,
+                    // backgroundColor: 'red',
+                    // foregroundColor: 'green',
+                    // highlightColor: 'yellow',
+                    tooltipWidth: 400,
+                    // nextLabel: '>',
+                    // prevLabel: '<',
+                    // doneLabel: 'x'
+                }}
                 ftuxEnd={() => {
                     console.log('ftux end');
                 }}/>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-                <a className="navbar-brand" href="index.html">Demo Application</a>
+            <span className="navbar-brand">
+                Demo Application for <a href="https://gitlab.com/jksfo/react-ftux">react-ftux</a>
+            </span>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -168,7 +168,10 @@ function Demo() {
                                 </div>
                             </form>
                         </li>
-                        <ReactFtuxTooltip pointerDirection="right" scrollTo step={5}>
+                        <ReactFtuxTooltip 
+                            pointerDirection="right" 
+                            scrollTo 
+                            step={5}>
                             <h5>Logout</h5>
                             <br />
                             <span>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</span>

@@ -1,5 +1,7 @@
 **react-ftux** is a component library that makes it easy to add a First-Time User Experience walkthrough to a React app
 
+A live demo is available at https://jksfo.gitlab.com/react-ftux. See `demo/src/index.jsx` for the demo implementation source.
+
 # Installation:
 `npm install react-ftux`
 
