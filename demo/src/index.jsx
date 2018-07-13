@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { ReactFtux, ReactFtuxTooltip } from "../../lib/bundle";
+import { ReactFtux, ReactFtuxTooltip } from "../../lib/bundle.js";
 // import "./styles.css";
 
 function Demo() {

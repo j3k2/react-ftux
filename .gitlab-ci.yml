@@ -4,6 +4,7 @@ pages:
   stage: deploy
   script:
     - npm install
+    - npm run build:prod
     - npm run webpack
     - mkdir public
     - mv demo/* public
