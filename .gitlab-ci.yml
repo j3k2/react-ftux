@@ -5,8 +5,10 @@ pages:
   script:
     - npm install
     - npm run webpack
+    - mkdir public
+    - mv demo/* public
   artifacts:
     paths:
-    - demo
+    - public
   only:
   - master
