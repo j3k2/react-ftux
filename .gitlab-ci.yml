@@ -1,7 +1,7 @@
 pages:
   stage: deploy
   script:
-    - echo 'Nothing to do...'
+    - npm run webpack
   artifacts:
     paths:
     - demo
