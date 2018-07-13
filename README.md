@@ -1,6 +1,6 @@
 **react-ftux** is a component library that makes it easy to add a First-Time User Experience walkthrough to a React app
 
-A live demo is available at https://jksfo.gitlab.com/react-ftux. See `demo/src/index.jsx` for the demo implementation source.
+A live demo is available at https://jksfo.gitlab.io/react-ftux. See `demo/src/index.jsx` for the demo implementation source.
 
 # Installation:
 `npm install react-ftux`
@@ -8,10 +8,10 @@ A live demo is available at https://jksfo.gitlab.com/react-ftux. See `demo/src/i
 Peer dependencies are `react` and `react-dom`.
 
 # Usage:
-1. `import {ReactFtux, ReactFtuxTooltip} from 'react-ftux';`
+1. Import components as needed (`import {ReactFtux, ReactFtuxTooltip} from 'react-ftux';`).
 2. Add `<ReactFtux/>` to your app, with the required prop `total`.
 3. Add `<ReactFtuxTooltip></ReactFtuxTooltip>`, with the required prop `step`, as a sibling before every element that should have a tooltip pointed to it.
-4. Elements that are children to `ReactFtuxTooltip` will be used as the content for that tooltip
+4. Elements that are children to `ReactFtuxTooltip` will be used as the content for that tooltip.
 
 ```
 <ReactFtux total={2}/>
@@ -49,4 +49,4 @@ Peer dependencies are `react` and `react-dom`.
 - pointerDirection: [String:"above"/"below"/"left"/"right"] Orientation of tooltip pointer. Default positioning of the tooltip is also adjusted for each orientation. "Above" is default.
 - scrollTo: [Boolean] When this step is displayed, scroll window to tooltip
 - scrollToTop: [Boolean] When this step is displayed, scroll window to top
-- zIndex: [Number] Default is set to 999.
+- zIndex: [Number] Default is set to 999
