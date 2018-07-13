@@ -3,6 +3,7 @@ pages:
   script:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - npm install
     - npm run build:prod
 =======
@@ -11,6 +12,8 @@ pages:
 =======
     - echo 'Nothing to do...'
 >>>>>>> parent of a9e5174... gitignore
+=======
+>>>>>>> parent of e45c24f... Update .gitlab-ci.yml
   artifacts:
     paths:
     - demo
