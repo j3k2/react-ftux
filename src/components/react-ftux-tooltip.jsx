@@ -80,6 +80,7 @@ class ReactFtuxTooltip extends Component {
         display: false,
         last: false,
         first: false,
+        animationDuration: 0.4,
         triggerEndFtux: () => {
           eventEmitter.trigger(events.FTUX_ACTION_END);
         },
