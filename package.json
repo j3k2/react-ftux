@@ -7,7 +7,8 @@
     "build": "rollup -c",
     "build:watch": "rollup -c --watch",
     "build:prod": "NODE_ENV=production rollup -c",
-    "dev-server": "webpack-dev-server --mode development --hot"
+    "dev-server": "webpack-dev-server --mode development --hot",
+    "webpack": "webpack"
   },
   "keywords": [],
   "license": "MIT",
@@ -28,7 +29,6 @@
     "@babel/preset-react": "^7.0.0-beta.46",
     "babel-loader": "^8.0.0-beta.0",
     "babel-preset-minify": "^0.5.0-alpha.a24dd066",
-    "html-webpack-plugin": "^3.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "rollup": "^0.62.0",
