@@ -37,7 +37,7 @@ class ReactFtux extends Component {
         ftuxStore.ftuxProps = this.props;
         ftuxStore.currentStep = 0;
         eventEmitter.trigger(events.FTUX_UPDATER, [ftuxStore]);
-        if(!this.props.tooltipSettings.disableKeydownListener) {
+        if(this.props.tooltipSettings && !this.props.tooltipSettings.disableKeydownListener) {
           window.addEventListener("keydown", this.keydownHandler);
         }
       }
@@ -54,7 +54,7 @@ class ReactFtux extends Component {
         if(this.props.ftuxEnd) {
           this.props.ftuxEnd();
         }
-        if(!this.props.tooltipSettings.disableKeydownListener) {
+        if(this.props.tooltipSettings && !this.props.tooltipSettings.disableKeydownListener) {
           window.removeEventListener("keydown", this.keydownHandler);
         }
       });
