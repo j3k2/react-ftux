@@ -3,13 +3,14 @@ image: node:latest
 pages:
   stage: deploy
   script:
+<<<<<<< HEAD
     - npm install
     - npm run build:prod
+=======
+>>>>>>> parent of e6a2f08... update gitlab-ci
     - npm run webpack
-    - mkdir public
-    - mv demo/* public
   artifacts:
     paths:
-    - public
+    - demo
   only:
   - master
