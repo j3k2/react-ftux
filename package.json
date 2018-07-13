@@ -7,8 +7,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -c --watch",
     "build:prod": "NODE_ENV=production rollup -c",
-    "dev-server": "webpack-dev-server --mode development --hot",
-    "webpack": "webpack"
+    "dev-server": "webpack-dev-server --mode development --hot"
   },
   "keywords": [],
   "license": "MIT",
