@@ -7,7 +7,7 @@
     "build": "rollup -c",
     "build:watch": "rollup -c --watch",
     "build:prod": "NODE_ENV=production rollup -c",
-    "build:docs": "npm run build:prod && webpack",
+    "build:demo": "npm run build:prod && webpack",
     "dev-server": "webpack-dev-server --mode development --hot",
     "webpack": "webpack"
   },
