@@ -1,9 +1,9 @@
 const path = require("path");
 
 module.exports = {
-  entry: './demo/src/index.jsx',
+  entry: './docs/src/index.jsx',
   output: {
-    path: path.resolve(__dirname, "./demo/"),
+    path: path.resolve(__dirname, "./docs/"),
     filename: "bundle.js"
   },
   module: {
@@ -23,7 +23,7 @@ module.exports = {
     extensions: [".js", ".jsx"]
   },
   devServer: {
-    contentBase: './demo/',
+    contentBase: './docs/',
     port: 8000,
     stats: "minimal",
     hot: true
