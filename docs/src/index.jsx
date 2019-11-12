@@ -185,7 +185,7 @@ function Demo() {
                     scrollTo
                     step={4}
                     pointerDirection="below">
-                    <h5>Share</h5>
+                    <h5>Step 4 tooltip</h5>
                     <br />
                     <span>This tooltip has pointerDirection set to 'below'. Also has the 'scrollTo' prop, which makes the window scroll to the element's position.</span>
                 </ReactFtuxTooltip>
