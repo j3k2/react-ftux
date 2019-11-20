@@ -36,11 +36,12 @@ Peer dependencies are `react` and `react-dom`.
 - ftuxEnd: [Function] Callback to be called when the walkthrough is complete
 - tooltipSettings: [Object] Settings to be applied to all tooltips
     - disableCloseButton: [Boolean] Hide "x" to end walkthrough early
-    - disableKeydownListener: [Boolean] Disable arrow keys, Enter key, and Escape key listeners
+    - disableKeydownListener: [Boolean] Disable arrow, Enter, Backspace, and Escape key listeners
     - animationDuration: [Number] Seconds for fade-in animation. 0 turns off animation. Default value is 0.4.
     - backgroundColor: [HTML Color] Color for background of tooltips. Default value is "black".
     - foregroundColor: [HTML Color] Color for text, borders, and buttons. Default value is "white".
     - highlightColor: [HTML Color] Hover color for buttons. Default value is "grey".
+    - fontStyle: [String] Value for 'font' CSS property to be used on buttons and tooltip content
     - tooltipWidth: [Number] Number of pixels for fixed tooltip width. Default value is 400.
     - nextLabel: [String] Custom text to replace "Next" on button
     - prevLabel: [String] Custom text to replace "Prev" on button

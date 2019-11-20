@@ -18,7 +18,7 @@ class ReactFtux extends Component {
       }
   
       this.keydownHandler = (event) => {
-        if(event.key === 'ArrowLeft') {
+        if(event.key === 'ArrowLeft' || event.key === 'Backspace') {
           this.decreaseStep();
         }
         if(event.key === 'ArrowRight' || event.key === 'Enter') {
