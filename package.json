@@ -47,10 +47,10 @@
     "webpack-dev-server": "^3.9.0"
   },
   "author": "John Kim <jksfo@pm.me>",
-  "homepage": "https://gitlab.com/jksfo/react-ftux",
+  "homepage": "https://github.com/j3k2/react-ftux",
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:jksfo/react-ftux.git"
+    "url": "https://github.com/j3k2/react-ftux.git"
   },
   "babel": {
     "presets": [
