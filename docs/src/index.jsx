@@ -9,8 +9,6 @@ import {
     Menu,
     Icon
 } from 'semantic-ui-react'
-import '../assets/style.css';
-import paragraph from '../assets/paragraph.png';
 
 function Demo() {
     return (
@@ -110,12 +108,12 @@ function Demo() {
                     <p>This tooltip has the 'scrollToTop' prop included, which is preferred over the 'scrollTo' prop for elements at the top of scrollable content.</p>
                 </ReactFtuxTooltip>
                 <Header as='h1'>react-ftux demo</Header>
-                <Image src={paragraph} style={{ marginTop: '2em' }} />
-                <Image src={paragraph} style={{ marginTop: '2em' }} />
-                <Image src={paragraph} style={{ marginTop: '2em' }} />
-                <Image src={paragraph} style={{ marginTop: '2em' }} />
-                <Image src={paragraph} style={{ marginTop: '2em' }} />
-                <Image src={paragraph} style={{ marginTop: '2em' }} />
+                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
                 <br/>
                 <br/>
                 <ReactFtuxTooltip
