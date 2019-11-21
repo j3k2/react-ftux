@@ -108,12 +108,12 @@ function Demo() {
                     <p>This tooltip has the 'scrollToTop' prop included, which is preferred over the 'scrollTo' prop for elements at the top of scrollable content.</p>
                 </ReactFtuxTooltip>
                 <Header as='h1'>react-ftux demo</Header>
-                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
-                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
-                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
-                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
-                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
-                <Image src="../assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
+                <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
                 <br/>
                 <br/>
                 <ReactFtuxTooltip
