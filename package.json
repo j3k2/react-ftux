@@ -1,6 +1,6 @@
 {
   "name": "react-ftux",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "",
   "main": "lib/bundle.js",
   "scripts": {
@@ -42,7 +42,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
   },
-  "author": "John Kim <jksfo@pm.me>",
+  "author": "John Kim <j3k2@pm.me>",
   "homepage": "https://github.com/j3k2/react-ftux",
   "repository": {
     "type": "git",
