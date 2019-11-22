@@ -34,28 +34,28 @@ const PointerBase = styled.div`
   position: absolute;
 `;
 
-const PointerAbove = PointerBase.extend`
+const PointerAbove = styled(PointerBase)`
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-bottom: 16px solid ${props => props.backgroundColor || 'black'};
   top: -16px;
 `;
 
-const PointerBelow = PointerBase.extend`
+const PointerBelow = styled(PointerBase)`
   border-left: 8px solid transparent; 
   border-right: 8px solid transparent; 
   border-top: 16px solid ${props => props.backgroundColor || 'black'};
   top: 100%;
 `;
 
-const PointerLeft = PointerBase.extend`
+const PointerLeft = styled(PointerBase)`
   border-top: 8px solid transparent; 
   border-bottom: 8px solid transparent;
   border-right: 16px solid ${props => props.backgroundColor || 'black'}; 
   left: -16px;
 `;
 
-const PointerRight = PointerBase.extend`
+const PointerRight = styled(PointerBase)`
   border-top: 8px solid transparent; 
   border-bottom: 8px solid transparent;
   border-left: 16px solid ${props => props.backgroundColor || 'black'};  
