@@ -250,7 +250,7 @@ class ReactFtuxTooltip extends Component {
         {this.state.display &&
           <TooltipBody
             animationDuration={this.tooltipSettings.animationDuration + 's'}
-            style={Object.assign(this.tooltipSettings.style, {
+            style={Object.assign({}, this.tooltipSettings.style, {
               pointerEvents: this.state.display ? 'auto' : 'none',
               top: this.tooltipSettings.offsetTop,
               left: this.tooltipSettings.offsetLeft,
