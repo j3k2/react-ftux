@@ -102,7 +102,7 @@ function Demo() {
                 </Menu>
             <Container text style={{ marginTop: '7em', paddingLeft: '15rem' }}>
 
-            <ReactFtuxTooltip scrollToTop step={5}>
+            <ReactFtuxTooltip scrollToTop zIndex={1} step={5}>
                     <h5>Step 5 tooltip</h5>
                     <br />
                     <p>This tooltip has the 'scrollToTop' prop included, which is preferred over the 'scrollTo' prop for elements at the top of scrollable content.</p>
