@@ -5,13 +5,13 @@ function ReactFtux(props) {
   const increaseStep = () => {
     const nextStep = ftuxStore.currentStep + 1;
     ftuxStore.currentStep = nextStep;
-    eventEmitter.trigger(events.FTUX_UPDATER, [ftuxStore]);
+    eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
   };
 
   const decreaseStep = () => {
     const nextStep = ftuxStore.currentStep - 1 > 0 ? ftuxStore.currentStep - 1 : 0;
     ftuxStore.currentStep = nextStep;
-    eventEmitter.trigger(events.FTUX_UPDATER, [ftuxStore]);
+    eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
   }
 
   const keydownHandler = (event) => {
@@ -22,32 +22,32 @@ function ReactFtux(props) {
       if (ftuxStore.currentStep < props.total - 1) {
         increaseStep();
       } else {
-        eventEmitter.trigger(events.FTUX_ACTION_END);
+        eventEmitter.trigger(events.END_FTUX);
       }
     }
     if (event.key === 'Escape') {
-      eventEmitter.trigger(events.FTUX_ACTION_END);
+      eventEmitter.trigger(events.END_FTUX);
     }
   }
 
   const init = () => {
     ftuxStore.ftuxProps = props;
     ftuxStore.currentStep = 0;
-    eventEmitter.trigger(events.FTUX_UPDATER, [ftuxStore]);
+    eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
     if (!props.tooltipSettings || !props.tooltipSettings.disableKeydownListener) {
       window.addEventListener("keydown", keydownHandler);
     }
   }
 
-  eventEmitter.on(events.FTUX_ACTION_INCREASE, () => {
+  eventEmitter.on(events.INCREASE_STEP, () => {
     increaseStep();
   });
 
-  eventEmitter.on(events.FTUX_ACTION_DECREASE, () => {
+  eventEmitter.on(events.DECREASE_STEP, () => {
     decreaseStep();
   });
-  
-  eventEmitter.on(events.FTUX_ACTION_END, () => {
+
+  eventEmitter.on(events.END_FTUX, () => {
     if (props.ftuxEnd) {
       props.ftuxEnd();
     }
@@ -55,10 +55,10 @@ function ReactFtux(props) {
       window.removeEventListener("keydown", keydownHandler);
     }
 
-    eventEmitter.off(events.FTUX_ACTION_INCREASE);
-    eventEmitter.off(events.FTUX_ACTION_DECREASE);
-    eventEmitter.off(events.FTUX_ACTION_END);
-    eventEmitter.off(events.FTUX_UPDATER);
+    eventEmitter.off(events.INCREASE_STEP);
+    eventEmitter.off(events.DECREASE_STEP);
+    eventEmitter.off(events.END_FTUX);
+    eventEmitter.off(events.UPDATE_FTUX);
   });
 
   if (!props.disable) {

@@ -82,22 +82,22 @@ class ReactFtuxTooltip extends Component {
     this.state = {
       display: false
     }
-    this.readTooltipSettings();
+    this.initializeTooltip();
   }
 
   triggerEndFtux = () => {
-    eventEmitter.trigger(events.FTUX_ACTION_END);
+    eventEmitter.trigger(events.END_FTUX);
   }
 
   triggerIncreaseStep = () => {
-    eventEmitter.trigger(events.FTUX_ACTION_INCREASE);
+    eventEmitter.trigger(events.INCREASE_STEP);
   }
 
   triggerDecreaseStep = () => {
-    eventEmitter.trigger(events.FTUX_ACTION_DECREASE);
+    eventEmitter.trigger(events.DECREASE_STEP);
   }
 
-  readTooltipSettings = () => {
+  initializeTooltip = () => {
     this.tooltipSettings = {
       first: this.props.step === 0,
       last: ftuxStore.ftuxProps && this.props.step === ftuxStore.ftuxProps.total - 1,
@@ -156,7 +156,7 @@ class ReactFtuxTooltip extends Component {
     }
   }
 
-  updateState(updatedFtuxStore) {
+  updateTooltipState(updatedFtuxStore) {
     if (this.props.step === updatedFtuxStore.currentStep) {
       if (this.props.scrollTo) {
         const tooltipRef = ReactDOM.findDOMNode(this.refs.tooltip);
@@ -178,19 +178,19 @@ class ReactFtuxTooltip extends Component {
   }
 
   componentDidMount() {
-    eventEmitter.on(events.FTUX_UPDATER, (updatedFtuxStore) => {
-      this.updateState(updatedFtuxStore);
+    eventEmitter.on(events.UPDATE_FTUX, (updatedFtuxStore) => {
+      this.updateTooltipState(updatedFtuxStore);
     });
-    eventEmitter.on(events.FTUX_ACTION_END, () => {
-      this.updateState({ currentStep: null });
+    eventEmitter.on(events.END_FTUX, () => {
+      this.updateTooltipState({ currentStep: null });
     });
-    eventEmitter.trigger(events.FTUX_UPDATER, [ftuxStore]);
+    eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
     this.setPosition();
   }
 
   componentWillUnmount() {
-    eventEmitter.off(events.FTUX_ACTION_END);
-    eventEmitter.off(events.FTUX_UPDATER);
+    eventEmitter.off(events.END_FTUX);
+    eventEmitter.off(events.UPDATE_FTUX);
   }
 
   render() {
