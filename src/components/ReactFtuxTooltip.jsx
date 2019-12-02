@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { events, eventEmitter, ftuxStore } from "../events";
 import styled, { keyframes } from 'styled-components';
 import TooltipPointer from './TooltipPointer.jsx';
@@ -33,6 +32,7 @@ class ReactFtuxTooltip extends Component {
       display: false
     }
     this.initializeTooltip();
+    this.tooltipRef = React.createRef();
   }
 
   triggerEndFtux = () => {
@@ -78,7 +78,7 @@ class ReactFtuxTooltip extends Component {
   }
 
   setPosition = () => {
-    const tooltipRef = ReactDOM.findDOMNode(this.refs.tooltip);
+    const tooltipRef = this.tooltipRef.current;
 
     if (!this.props.pointerDirection || this.props.pointerDirection === 'above') {
       this.tooltipSettings.offsetTop = tooltipRef.nextSibling.offsetHeight + 16 + (this.props.offsetTop || 0);
@@ -109,7 +109,7 @@ class ReactFtuxTooltip extends Component {
   updateTooltipState(updatedFtuxStore) {
     if (this.props.step === updatedFtuxStore.currentStep) {
       if (this.props.scrollTo) {
-        const tooltipRef = ReactDOM.findDOMNode(this.refs.tooltip);
+        const tooltipRef = this.tooltipRef.current;
 
         window.scrollTo(0, tooltipRef.offsetTop);
       }
@@ -145,7 +145,11 @@ class ReactFtuxTooltip extends Component {
 
   render() {
     return (
-      <div ref="tooltip" style={{ transform: 'scale(1)', 'zIndex': this.props.zIndex === undefined ? 'auto' : this.props.zIndex }}>
+      <div ref={this.tooltipRef}
+        style={{
+          transform: 'scale(1)',
+          'zIndex': this.props.zIndex === undefined ? 'auto' : this.props.zIndex
+        }}>
         {this.state.display &&
           <TooltipBody
             animationDuration={this.tooltipSettings.animationDuration + 's'}
@@ -161,7 +165,7 @@ class ReactFtuxTooltip extends Component {
               width: this.tooltipSettings.tooltipWidth,
               minWidth: this.tooltipSettings.tooltipWidth
             })}>
-            <TooltipPointer 
+            <TooltipPointer
               pointerDirection={this.props.pointerDirection}
               backgroundColor={this.tooltipSettings.backgroundColor}
             ></TooltipPointer>
