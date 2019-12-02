@@ -83,6 +83,7 @@ function Demo() {
                         pointerDirection='left'
                         offsetLeft={-160}
                         offsetTop={-10}
+                        zIndex={1}
                         step={3}>
                             <h5>Step 3 tooltip</h5>
                             <br/>
