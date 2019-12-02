@@ -87,7 +87,7 @@ function Demo() {
                             <h5>Step 3 tooltip</h5>
                             <br/>
                             <p>
-                            This tooltip has the 'pointerDirection' prop set to 'left', 'offsetLeft' prop set to '-160', and 'offsetTop' prop set to '-10' to adjust position of tooltip/pointer.
+                            This tooltip has the 'pointerDirection' prop set to 'left', 'offsetLeft' prop set to '-160', and 'offsetTop' prop set to '-10' to adjust tooltip position.
                             </p>
                         </ReactFtuxTooltip>
                     <Menu.Item
