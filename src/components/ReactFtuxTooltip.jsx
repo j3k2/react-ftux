@@ -62,8 +62,7 @@ class ReactFtuxTooltip extends Component {
       highlightColor: 'grey',
       fontStyle: '14px Lato, Helvetica, Arial, sans-serif',
       style: {
-        font: 'initial',
-        lineHeight: 'initial',
+        all: 'initial',
         padding: 20,
         position: 'fixed',
         borderRadius: 5,
@@ -178,8 +177,6 @@ class ReactFtuxTooltip extends Component {
                 top: 4,
                 right: 6,
                 fontSize: 24,
-                font: 'initial',
-                lineHeight: 'initial',
                 display: this.tooltipSettings.disableCloseButton ? 'none' : null
               }}
               highlightColor={this.tooltipSettings.highlightColor}

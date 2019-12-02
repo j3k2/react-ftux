@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  font: initial;
-  line-height: initial;
   font: ${props => props.buttonFontStyle};
   margin: 4px;
   width: 64px;
