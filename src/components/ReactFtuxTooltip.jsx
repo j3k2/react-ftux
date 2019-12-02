@@ -145,7 +145,7 @@ class ReactFtuxTooltip extends Component {
 
   render() {
     return (
-      <div ref="tooltip" style={{ transform: 'scale(1)', 'zIndex': this.props.zIndex === undefined ? 999 : this.props.zIndex }}>
+      <div ref="tooltip" style={{ transform: 'scale(1)', 'zIndex': this.props.zIndex === undefined ? 'auto' : this.props.zIndex }}>
         {this.state.display &&
           <TooltipBody
             animationDuration={this.tooltipSettings.animationDuration + 's'}
