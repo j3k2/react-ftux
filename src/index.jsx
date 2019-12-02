@@ -1,4 +1,4 @@
-import ReactFtux from './components/react-ftux.jsx';
-import ReactFtuxTooltip from './components/react-ftux-tooltip.jsx';
+import ReactFtux from './components/ReactFtux.jsx';
+import ReactFtuxTooltip from './components/ReactFtuxTooltip.jsx';
 
 export { ReactFtux, ReactFtuxTooltip };

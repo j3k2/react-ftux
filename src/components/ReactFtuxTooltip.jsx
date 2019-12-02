@@ -2,64 +2,14 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { events, eventEmitter, ftuxStore } from "../events";
 import styled, { keyframes } from 'styled-components';
+import TooltipPointer from './TooltipPointer.jsx';
+import TooltipButtons from './TooltipButtons.jsx';
 
 const StyledAnchor = styled.span`
   :hover{
     cursor: pointer;
     color: ${props => props.highlightColor};
   }
-`;
-
-const StyledButton = styled.button`
-  font: initial;
-  line-height: initial;
-  font: ${props => props.buttonFontStyle};
-  margin: 4px;
-  width: 64px;
-  height: 32px;
-  background-color: ${props => props.backgroundColor};
-  border: solid 1px ${props => props.foregroundColor};
-  border-radius: 5px;
-  color: ${props => props.foregroundColor};
-  :hover{
-    cursor: pointer;
-    color: ${props => props.highlightColor};
-    border-color: ${props => props.highlightColor};
-  }
-`;
-
-const PointerBase = styled.div`
-  width: 0px;
-  height: 0px;
-  position: absolute;
-`;
-
-const PointerAbove = styled(PointerBase)`
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 16px solid ${props => props.backgroundColor};
-  top: -16px;
-`;
-
-const PointerBelow = styled(PointerBase)`
-  border-left: 8px solid transparent; 
-  border-right: 8px solid transparent; 
-  border-top: 16px solid ${props => props.backgroundColor};
-  top: 100%;
-`;
-
-const PointerLeft = styled(PointerBase)`
-  border-top: 8px solid transparent; 
-  border-bottom: 8px solid transparent;
-  border-right: 16px solid ${props => props.backgroundColor}; 
-  left: -16px;
-`;
-
-const PointerRight = styled(PointerBase)`
-  border-top: 8px solid transparent; 
-  border-bottom: 8px solid transparent;
-  border-left: 16px solid ${props => props.backgroundColor};  
-  right: -16px;
 `;
 
 const opacityAnimation = keyframes`
@@ -194,57 +144,6 @@ class ReactFtuxTooltip extends Component {
   }
 
   render() {
-    let nav;
-    if (this.tooltipSettings.last) {
-      nav = (<div>
-        <StyledButton
-          buttonFontStyle={this.tooltipSettings.fontStyle}
-          backgroundColor={this.tooltipSettings.backgroundColor}
-          foregroundColor={this.tooltipSettings.foregroundColor}
-          highlightColor={this.tooltipSettings.highlightColor}
-          onClick={this.triggerDecreaseStep}>
-          {this.tooltipSettings.prevLabel}
-        </StyledButton>
-        <StyledButton
-          buttonFontStyle={this.tooltipSettings.fontStyle}
-          backgroundColor={this.tooltipSettings.backgroundColor}
-          foregroundColor={this.tooltipSettings.foregroundColor}
-          highlightColor={this.tooltipSettings.highlightColor}
-          onClick={this.triggerEndFtux}>
-          {this.tooltipSettings.doneLabel}
-        </StyledButton>
-      </div>);
-    } else {
-      nav = (<div>
-        {!this.tooltipSettings.first &&
-          <StyledButton
-            buttonFontStyle={this.tooltipSettings.fontStyle}
-            backgroundColor={this.tooltipSettings.backgroundColor}
-            foregroundColor={this.tooltipSettings.foregroundColor}
-            highlightColor={this.tooltipSettings.highlightColor}
-            onClick={this.triggerDecreaseStep}>
-            {this.tooltipSettings.prevLabel}
-          </StyledButton>
-        }
-        <StyledButton
-          buttonFontStyle={this.tooltipSettings.fontStyle}
-          backgroundColor={this.tooltipSettings.backgroundColor}
-          foregroundColor={this.tooltipSettings.foregroundColor}
-          highlightColor={this.tooltipSettings.highlightColor}
-          onClick={this.triggerIncreaseStep}>
-          {this.tooltipSettings.nextLabel}
-        </StyledButton>
-      </div>);
-    }
-
-    let pointer = (<div>
-      {this.props.pointerDirection === 'above' ? <PointerAbove backgroundColor={this.tooltipSettings.backgroundColor}></PointerAbove> : null}
-      {this.props.pointerDirection === 'below' ? <PointerBelow backgroundColor={this.tooltipSettings.backgroundColor}></PointerBelow> : null}
-      {this.props.pointerDirection === 'left' ? <PointerLeft backgroundColor={this.tooltipSettings.backgroundColor}></PointerLeft> : null}
-      {this.props.pointerDirection === 'right' ? <PointerRight backgroundColor={this.tooltipSettings.backgroundColor}></PointerRight> : null}
-      {!this.props.pointerDirection ? <PointerAbove backgroundColor={this.tooltipSettings.backgroundColor}></PointerAbove> : null}
-    </div>);
-
     return (
       <div ref="tooltip" style={{ transform: 'scale(1)', 'zIndex': this.props.zIndex === undefined ? 999 : this.props.zIndex }}>
         {this.state.display &&
@@ -262,7 +161,10 @@ class ReactFtuxTooltip extends Component {
               width: this.tooltipSettings.tooltipWidth,
               minWidth: this.tooltipSettings.tooltipWidth
             })}>
-            {pointer}
+            <TooltipPointer 
+              pointerDirection={this.props.pointerDirection}
+              backgroundColor={this.tooltipSettings.backgroundColor}
+            ></TooltipPointer>
             <div style={{ display: 'block', padding: 10 }}>
               {this.props.children}
             </div>
@@ -281,7 +183,12 @@ class ReactFtuxTooltip extends Component {
               &#x2715;
             </StyledAnchor>
             <div style={{ float: 'right', 'paddingTop': 10 }}>
-              {nav}
+              <TooltipButtons
+                tooltipSettings={this.tooltipSettings}
+                increaseStep={this.triggerIncreaseStep}
+                decreaseStep={this.triggerDecreaseStep}
+                endFtux={this.triggerEndFtux}
+              />
             </div>
           </TooltipBody>
         }
