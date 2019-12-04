@@ -1,26 +1,69 @@
 import React from "react";
 import { events, eventEmitter, ftuxStore } from "../events";
 
-function ReactFtux(props) {
-  const increaseStep = () => {
+class ReactFtux extends React.Component {
+  constructor(props) {
+    super(props);
+
+    ftuxStore.ftuxProps = props;
+
+    if (!this.props.tooltipSettings || !this.props.tooltipSettings.disableKeydownListener) {
+      window.addEventListener("keydown", this.keydownHandler);
+    }
+    eventEmitter.on(events.INCREASE_STEP, () => {
+      this.increaseStep();
+    });
+    eventEmitter.on(events.DECREASE_STEP, () => {
+      this.decreaseStep();
+    });
+    eventEmitter.on(events.END_FTUX, () => {
+      if (this.props.ftuxEnd) {
+        this.props.ftuxEnd();
+      }
+    });
+
+    if(!this.props.disable) {
+      this.init();
+    }
+  }
+
+  componentDidUpdate() {
+      if(!this.props.disable) {
+        this.init();
+      } else {
+        eventEmitter.trigger(events.END_FTUX);
+      }
+  }
+
+  componentWillUnmount() {
+    if (!this.props.tooltipSettings || !this.props.tooltipSettings.disableKeydownListener) {
+      window.removeEventListener("keydown", this.keydownHandler);
+    }
+    eventEmitter.off(events.INCREASE_STEP);
+    eventEmitter.off(events.DECREASE_STEP);
+    eventEmitter.off(events.END_FTUX);
+    eventEmitter.off(events.UPDATE_FTUX);
+  }
+
+  increaseStep = () => {
     const nextStep = ftuxStore.currentStep + 1;
     ftuxStore.currentStep = nextStep;
     eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
-  };
+  }
 
-  const decreaseStep = () => {
+  decreaseStep = () => {
     const nextStep = ftuxStore.currentStep - 1 > 0 ? ftuxStore.currentStep - 1 : 0;
     ftuxStore.currentStep = nextStep;
     eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
   }
 
-  const keydownHandler = (event) => {
+  keydownHandler = (event) => {
     if (event.key === 'ArrowLeft' || event.key === 'Backspace') {
-      decreaseStep();
+      this.decreaseStep();
     }
     if (event.key === 'ArrowRight' || event.key === 'Enter') {
-      if (ftuxStore.currentStep < props.total - 1) {
-        increaseStep();
+      if (ftuxStore.currentStep < this.props.total - 1) {
+        this.increaseStep();
       } else {
         eventEmitter.trigger(events.END_FTUX);
       }
@@ -30,42 +73,14 @@ function ReactFtux(props) {
     }
   }
 
-  const init = () => {
-    ftuxStore.ftuxProps = props;
+  init = () => {
     ftuxStore.currentStep = 0;
     eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
-    if (!props.tooltipSettings || !props.tooltipSettings.disableKeydownListener) {
-      window.addEventListener("keydown", keydownHandler);
-    }
   }
 
-  eventEmitter.on(events.INCREASE_STEP, () => {
-    increaseStep();
-  });
-
-  eventEmitter.on(events.DECREASE_STEP, () => {
-    decreaseStep();
-  });
-
-  eventEmitter.on(events.END_FTUX, () => {
-    if (props.ftuxEnd) {
-      props.ftuxEnd();
-    }
-    if (!props.tooltipSettings || !props.tooltipSettings.disableKeydownListener) {
-      window.removeEventListener("keydown", keydownHandler);
-    }
-
-    eventEmitter.off(events.INCREASE_STEP);
-    eventEmitter.off(events.DECREASE_STEP);
-    eventEmitter.off(events.END_FTUX);
-    eventEmitter.off(events.UPDATE_FTUX);
-  });
-
-  if (!props.disable) {
-    init();
+  render(){
+    return null;
   }
-
-  return null;
 }
 
 export default ReactFtux;
