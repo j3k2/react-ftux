@@ -35,14 +35,14 @@ const PointerRight = styled(PointerBase)`
   right: -16px;
 `;
 
-export default function TooltipPointer(props) {
-    return (
-        <>
-            {props.pointerDirection === 'above' ? <PointerAbove backgroundColor={props.backgroundColor}></PointerAbove> : null}
-            {props.pointerDirection === 'below' ? <PointerBelow backgroundColor={props.backgroundColor}></PointerBelow> : null}
-            {props.pointerDirection === 'left' ? <PointerLeft backgroundColor={props.backgroundColor}></PointerLeft> : null}
-            {props.pointerDirection === 'right' ? <PointerRight backgroundColor={props.backgroundColor}></PointerRight> : null}
-            {!props.pointerDirection ? <PointerAbove backgroundColor={props.backgroundColor}></PointerAbove> : null}
-        </>
-    )
+export default function (props) {
+  return (
+    <>
+      {props.pointerDirection === 'above' ? <PointerAbove backgroundColor={props.backgroundColor}></PointerAbove> : null}
+      {props.pointerDirection === 'below' ? <PointerBelow backgroundColor={props.backgroundColor}></PointerBelow> : null}
+      {props.pointerDirection === 'left' ? <PointerLeft backgroundColor={props.backgroundColor}></PointerLeft> : null}
+      {props.pointerDirection === 'right' ? <PointerRight backgroundColor={props.backgroundColor}></PointerRight> : null}
+      {!props.pointerDirection ? <PointerAbove backgroundColor={props.backgroundColor}></PointerAbove> : null}
+    </>
+  )
 }
