@@ -83,11 +83,12 @@ function Demo() {
                         pointerDirection='left'
                         offsetLeft={-160}
                         offsetTop={-10}
+                        zIndex={1}
                         step={3}>
                             <h5>Step 3 tooltip</h5>
                             <br/>
                             <p>
-                            This tooltip has the 'pointerDirection' prop set to 'left', 'offsetLeft' prop set to '-160', and 'offsetTop' prop set to '-10' to adjust position of tooltip/pointer.
+                            This tooltip has the 'pointerDirection' prop set to 'left', 'offsetLeft' prop set to '-160', and 'offsetTop' prop set to '-10' to adjust tooltip position.
                             </p>
                         </ReactFtuxTooltip>
                     <Menu.Item
@@ -102,7 +103,7 @@ function Demo() {
                 </Menu>
             <Container text style={{ marginTop: '7em', paddingLeft: '15rem' }}>
 
-            <ReactFtuxTooltip scrollToTop step={5}>
+            <ReactFtuxTooltip scrollToTop zIndex={1} step={5}>
                     <h5>Step 5 tooltip</h5>
                     <br />
                     <p>This tooltip has the 'scrollToTop' prop included, which is preferred over the 'scrollTo' prop for elements at the top of scrollable content.</p>

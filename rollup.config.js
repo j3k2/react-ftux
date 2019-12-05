@@ -7,7 +7,7 @@ import conditional from "rollup-plugin-conditional";
 const isProduction = (process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() === 'production') || false;
 
 export default {
-    input: 'src/index.jsx',
+    input: 'src/index.js',
     output: {
         file: 'lib/bundle.js',
         format: 'cjs'

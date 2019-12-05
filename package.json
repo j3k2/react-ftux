@@ -1,6 +1,6 @@
 {
   "name": "react-ftux",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "",
   "main": "lib/bundle.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
-    "styled-components": "^3.3.3",
+    "styled-components": "^4.4.1",
     "wolfy87-eventemitter": "^5.2.5"
   },
   "peerDependencies": {
