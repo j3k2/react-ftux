@@ -52,7 +52,7 @@
   - step (required): [Integer] 0-indexed step identifier
   - offsetTop: [Number] Pixels to move tooltip down from default positioning
   - offsetLeft: [Number] Pixels to move tooltip left from default positioning
-  - pointerDirection: [String] Orientation of tooltip pointer. Default positioning of the tooltip is also adjusted for each orientation. Valid values are Can be `'above'`/`'below'`/`'left'`/`'right'`. Default value is `'above'`.
+  - pointerDirection: [String] Direction of tooltip pointer. Positioning of the tooltip is also adjusted. Valid values are `'above'`/`'below'`/`'left'`/`'right'`. Default value is `'above'`.
   - scrollTo: [Boolean] When this step is displayed, scroll window to tooltip
   - scrollToTop: [Boolean] When this step is displayed, scroll window to top
   - zIndex: [Number] Default value is `'auto'`
