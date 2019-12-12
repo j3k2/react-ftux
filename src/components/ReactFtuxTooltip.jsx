@@ -11,7 +11,6 @@ class ReactFtuxTooltip extends React.Component {
       display: false
     }
     this.initializeTooltip();
-    this.tooltipRef = React.createRef();
   }
 
   triggerEndFtux = () => {
@@ -49,16 +48,14 @@ class ReactFtuxTooltip extends React.Component {
   }
 
   setPosition = () => {
-    const tooltipRef = this.tooltipRef.current;
-
     if (!this.props.pointerDirection || this.props.pointerDirection === 'above') {
-      this.tooltipSettings.offsetTop = tooltipRef.nextSibling.offsetHeight + 16 + (this.props.offsetTop || 0);
+      this.tooltipSettings.offsetTop = this.tooltipRef.nextSibling.offsetHeight + 16 + (this.props.offsetTop || 0);
       if (this.props.offsetLeft) {
         this.tooltipSettings.offsetLeft = this.props.offsetLeft;
       }
     }
     if (this.props.pointerDirection === 'left') {
-      this.tooltipSettings.offsetLeft = tooltipRef.nextSibling.offsetWidth + 16 + (this.props.offsetLeft || 0);
+      this.tooltipSettings.offsetLeft = this.tooltipRef.nextSibling.offsetWidth + 16 + (this.props.offsetLeft || 0);
       if (this.props.offsetTop) {
         this.tooltipSettings.offsetTop = this.props.offsetTop;
       }
@@ -76,13 +73,11 @@ class ReactFtuxTooltip extends React.Component {
       }
     }
   }
-
-  updateTooltipState(updatedFtuxStore) {
+  
+  updateTooltipState = (updatedFtuxStore) => {
     if (this.props.step === updatedFtuxStore.currentStep) {
       if (this.props.scrollTo) {
-        const tooltipRef = this.tooltipRef.current;
-
-        window.scrollTo(0, tooltipRef.offsetTop);
+        window.scrollTo(0, this.tooltipRef.offsetTop);
       }
       if (this.props.scrollToTop) {
         window.scrollTo(0, 0);
@@ -98,6 +93,10 @@ class ReactFtuxTooltip extends React.Component {
     }
   }
 
+  setTooltipRef = (element) => {
+    this.tooltipRef = element;
+  }
+  
   componentDidMount() {
     eventEmitter.on(events.UPDATE_FTUX, (updatedFtuxStore) => {
       this.updateTooltipState(updatedFtuxStore);
@@ -117,7 +116,7 @@ class ReactFtuxTooltip extends React.Component {
   render() {
     return (
       <div 
-        ref={this.tooltipRef}
+        ref={this.setTooltipRef}
         style={{
           transform: 'scale(1)',
           zIndex: this.props.zIndex === undefined ? 'auto' : this.props.zIndex
@@ -128,7 +127,6 @@ class ReactFtuxTooltip extends React.Component {
             display={this.state.display}
             endFtux={this.triggerEndFtux}
           >
-            
             <TooltipPointer
               pointerDirection={this.props.pointerDirection}
               backgroundColor={this.tooltipSettings.backgroundColor}
