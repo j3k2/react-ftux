@@ -73,7 +73,7 @@ class ReactFtuxTooltip extends React.Component {
       }
     }
   }
-
+  
   updateTooltipState = (updatedFtuxStore) => {
     if (this.props.step === updatedFtuxStore.currentStep) {
       if (this.props.scrollTo) {
@@ -96,7 +96,7 @@ class ReactFtuxTooltip extends React.Component {
   setTooltipRef = (element) => {
     this.tooltipRef = element;
   }
-
+  
   componentDidMount() {
     eventEmitter.on(events.UPDATE_FTUX, (updatedFtuxStore) => {
       this.updateTooltipState(updatedFtuxStore);
