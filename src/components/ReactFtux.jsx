@@ -19,6 +19,7 @@ class ReactFtux extends React.Component {
     eventEmitter.on(events.END_FTUX, () => {
       if (this.props.ftuxEnd) {
         this.props.ftuxEnd();
+        window.removeEventListener("keydown", this.keydownHandler);
       }
     });
 
