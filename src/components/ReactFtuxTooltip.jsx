@@ -1,9 +1,14 @@
 import React from "react";
 import { events, eventEmitter, ftuxStore } from "../events";
-import TooltipPointer from "./Tooltip/TooltipPointer.jsx";
-import TooltipButtons from "./Tooltip/TooltipButtons.jsx";
-import TooltipBody from "./Tooltip/TooltipBody.jsx";
-import styled from "styled-components";
+import {
+  TooltipBody,
+  TooltipContent,
+  TooltipWrapper,
+  CloseButton,
+  TooltipPointer,
+  TooltipButtons,
+  TooltipButton,
+} from "./TooltipStyles.jsx";
 
 class ReactFtuxTooltip extends React.Component {
   constructor(props) {
@@ -41,7 +46,7 @@ class ReactFtuxTooltip extends React.Component {
       backgroundColor: "#000",
       foregroundColor: "#fff",
       highlightColor: "#808080",
-      fontStyle: '14px Lato, Helvetica, Arial, sans-serif'
+      fontStyle: "14px Lato, Helvetica, Arial, sans-serif",
     };
 
     if (ftuxStore.ftuxProps.tooltipSettings) {
@@ -129,18 +134,6 @@ class ReactFtuxTooltip extends React.Component {
   }
 
   render() {
-    const TooltipContent = styled.div`
-      display: block;
-      padding: 10px;
-    `;
-
-    const TooltipWrapper = styled.div`
-      transform: scale(1);
-      position: relative;
-      z-index: ${(props) =>
-        props.zIndex === undefined ? "auto" : props.zIndex};
-    `;
-
     return (
       <TooltipWrapper
         ref={this.setTooltipRef}
@@ -150,30 +143,71 @@ class ReactFtuxTooltip extends React.Component {
         id={`step-${this.props.step}`}
         zIndex={this.props.zIndex}
       >
-        {this.state.display && (
-          <TooltipBody
-            className="tooltip-body"
-            tooltipSettings={this.tooltipSettings}
-            display={this.state.display}
-            endFtux={this.triggerEndFtux}
-          >
+        <TooltipBody
+          className="tooltip-body"
+          tooltipSettings={this.tooltipSettings}
+          display={this.state.display ? 1 : 0}
+        >
+          {this.props.pointerDirection ? (
             <TooltipPointer
-              className="tooltip-pointer"
-              pointerDirection={this.props.pointerDirection}
+              className={`tooltip-pointer ${this.props.pointerDirection}`}
               backgroundColor={this.tooltipSettings.backgroundColor}
-            />
-            <TooltipContent className="tooltip-content">
-              {this.props.children}
-            </TooltipContent>
-            <TooltipButtons
-              className="tooltip-buttons"
-              tooltipSettings={this.tooltipSettings}
-              increaseStep={this.triggerIncreaseStep}
-              decreaseStep={this.triggerDecreaseStep}
-              endFtux={this.triggerEndFtux}
-            />
-          </TooltipBody>
-        )}
+            ></TooltipPointer>
+          ) : (
+            <TooltipPointer
+              className={`tooltip-pointer above`}
+              backgroundColor={this.tooltipSettings.backgroundColor}
+            ></TooltipPointer>
+          )}
+          <TooltipContent className="tooltip-content">
+            {this.props.children}
+          </TooltipContent>
+          <TooltipButtons className="tooltip-buttons">
+            {!this.tooltipSettings.first && (
+              <TooltipButton
+                className="tooltip-button tooltip-button-prev"
+                buttonFontStyle={this.tooltipSettings.fontStyle}
+                backgroundColor={this.tooltipSettings.backgroundColor}
+                foregroundColor={this.tooltipSettings.foregroundColor}
+                highlightColor={this.tooltipSettings.highlightColor}
+                onClick={this.triggerDecreaseStep}
+              >
+                {this.tooltipSettings.prevLabel}
+              </TooltipButton>
+            )}
+            {!this.tooltipSettings.last && (
+              <TooltipButton
+                className="tooltip-button tooltip-button-next"
+                buttonFontStyle={this.tooltipSettings.fontStyle}
+                backgroundColor={this.tooltipSettings.backgroundColor}
+                foregroundColor={this.tooltipSettings.foregroundColor}
+                highlightColor={this.tooltipSettings.highlightColor}
+                onClick={this.triggerIncreaseStep}
+              >
+                {this.tooltipSettings.nextLabel}
+              </TooltipButton>
+            )}
+            {this.tooltipSettings.last && (
+              <TooltipButton
+                className="tooltip-button tooltip-button-end"
+                buttonFontStyle={this.tooltipSettings.fontStyle}
+                backgroundColor={this.tooltipSettings.backgroundColor}
+                foregroundColor={this.tooltipSettings.foregroundColor}
+                highlightColor={this.tooltipSettings.highlightColor}
+                onClick={this.triggerEndFtux}
+              >
+                {this.tooltipSettings.doneLabel}
+              </TooltipButton>
+            )}
+          </TooltipButtons>
+          <CloseButton
+            className="tooltip-close"
+            highlightColor={this.tooltipSettings.highlightColor}
+            onClick={this.triggerEndFtux}
+          >
+            &#x2715;
+          </CloseButton>
+        </TooltipBody>
       </TooltipWrapper>
     );
   }
