@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 const CloseButton = styled.span`
   position: absolute;
@@ -12,23 +12,14 @@ const CloseButton = styled.span`
   }
 `;
 
-const opacityAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
-
 const StyledTooltipBody = styled.div`
   all: initial;
   padding: 20px;
   position: fixed;
   border-radius: 5px;
   display: block;
-  animation: ${opacityAnimation} ${props => props.animationDuration} ease-in;
+  display: ${(props) => (props.display ? "block" : "none")};
+  opacity: ${(props) => props.display};
   transition: opacity 0.4s ease-in;
   pointer-events: ${(props) => (props.display ? "auto" : "none")};
   top: ${(props) => props.tooltipSettings.offsetTop}px;
@@ -47,8 +38,7 @@ export default function (props) {
     <StyledTooltipBody
       className={props.className}
       tooltipSettings={props.tooltipSettings}
-      display={props.display.toString()}
-      animationDuration={props.tooltipSettings.animationDuration + 's'}
+      display={props.display ? 1 : 0}
     >
       {props.children}
       <CloseButton
