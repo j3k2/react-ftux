@@ -10,7 +10,7 @@ import {
   TooltipButton,
 } from "./TooltipStyles.jsx";
 
-class ReactFtuxTooltip extends React.Component {
+class FtuxTooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -132,35 +132,35 @@ class ReactFtuxTooltip extends React.Component {
     return (
       <TooltipWrapper
         ref={this.setTooltipRef}
-        className={`tooltip-wrapper ${
+        className={`ftux-tooltip ${
           this.tooltipSettings.className ? this.tooltipSettings.className : ""
         }`}
-        id={`step-${this.props.step}`}
+        id={`ftux-id-${this.props.step}`}
         zIndex={this.props.zIndex}
       >
         <TooltipBody
-          className="tooltip-body"
+          className="ftux-tooltip-body"
           tooltipSettings={this.tooltipSettings}
           display={this.state.display ? 1 : 0}
         >
           {this.props.pointerDirection ? (
             <TooltipPointer
-              className={`tooltip-pointer ${this.props.pointerDirection}`}
+              className={`ftux-tooltip-pointer ${this.props.pointerDirection}`}
               backgroundColor={this.tooltipSettings.backgroundColor}
             ></TooltipPointer>
           ) : (
             <TooltipPointer
-              className={`tooltip-pointer above`}
+              className={`ftux-tooltip-pointer above`}
               backgroundColor={this.tooltipSettings.backgroundColor}
             ></TooltipPointer>
           )}
-          <TooltipContent className="tooltip-content">
+          <TooltipContent className="ftux-tooltip-content">
             {this.props.children}
           </TooltipContent>
-          <TooltipButtons className="tooltip-buttons">
+          <TooltipButtons className="ftux-tooltip-buttons">
             {!this.tooltipSettings.first && (
               <TooltipButton
-                className="tooltip-button tooltip-button-prev"
+                className="ftux-tooltip-button ftux-tooltip-button-prev"
                 buttonFontStyle={this.tooltipSettings.fontStyle}
                 backgroundColor={this.tooltipSettings.backgroundColor}
                 foregroundColor={this.tooltipSettings.foregroundColor}
@@ -172,7 +172,7 @@ class ReactFtuxTooltip extends React.Component {
             )}
             {!this.tooltipSettings.last && (
               <TooltipButton
-                className="tooltip-button tooltip-button-next"
+                className="ftux-tooltip-button ftux-tooltip-button-next"
                 buttonFontStyle={this.tooltipSettings.fontStyle}
                 backgroundColor={this.tooltipSettings.backgroundColor}
                 foregroundColor={this.tooltipSettings.foregroundColor}
@@ -184,7 +184,7 @@ class ReactFtuxTooltip extends React.Component {
             )}
             {this.tooltipSettings.last && (
               <TooltipButton
-                className="tooltip-button tooltip-button-end"
+                className="ftux-tooltip-button ftux-tooltip-button-end"
                 buttonFontStyle={this.tooltipSettings.fontStyle}
                 backgroundColor={this.tooltipSettings.backgroundColor}
                 foregroundColor={this.tooltipSettings.foregroundColor}
@@ -196,7 +196,7 @@ class ReactFtuxTooltip extends React.Component {
             )}
           </TooltipButtons>
           <CloseButton
-            className="tooltip-close"
+            className="ftux-tooltip-close"
             highlightColor={this.tooltipSettings.highlightColor}
             onClick={this.triggerEndFtux}
           >
@@ -208,4 +208,4 @@ class ReactFtuxTooltip extends React.Component {
   }
 }
 
-export default ReactFtuxTooltip;
+export default FtuxTooltip;

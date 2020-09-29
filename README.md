@@ -14,40 +14,40 @@ Peer dependencies are `react` and `react-dom`.
 
 # Usage:
 
-1. Import components as needed (`import {ReactFtux, ReactFtuxTooltip} from 'react-ftux';`).
-2. Add `<ReactFtux/>` to your app, with the required prop `total`.
-3. Add `<ReactFtuxTooltip/>`, with the required prop `step`, as a sibling before every element that should have a tooltip pointed to it.
-4. Elements that are children to `ReactFtuxTooltip` will be used as the content for that tooltip.
+1. Import components as needed (`import {Ftux, FtuxTooltip} from '-ftux';`).
+2. Add `<Ftux/>` to your app, with the required prop `total`.
+3. Add `<FtuxTooltip/>`, with the required prop `step`, as a sibling before every element that should have a tooltip pointed to it.
+4. Elements that are children to `FtuxTooltip` will be used as the content for that tooltip.
 
 # Example:
 
 ```
-<ReactFtux total={2}/>
-<ReactFtuxTooltip step={0}>
+<Ftux total={2}/>
+<FtuxTooltip step={0}>
     <span>Step 1</span>
-</ReactFtuxTooltip>
+</FtuxTooltip>
 <div>Step 1 points here</div>
 
-<ReactFtuxTooltip step={1}>
+<FtuxTooltip step={1}>
     <span>Step 2</span>
-</ReactFtuxTooltip>
+</FtuxTooltip>
 <div>Step 2 points here</div>
 ```
 
-# ReactFtux props:
+# <Ftux> props:
 
 - total (required): [Integer] Total number of steps in walkthrough
 - disable: [Boolean] Hide/end walkthrough
 - ftuxEnd: [Function] Callback to be called when the walkthrough is complete
 - disableKeydownListener: [Boolean] Disable arrow, Enter, Backspace, and Escape key listeners. Default value is `false`.
 - tooltipSettings: [Object] Settings to be applied to all tooltips
-  - className: [String] className value to be applied to all tooltips' "tooltip-wrapper" elements (see ReactFtuxTooltip elements/classes below)
+  - className: [String] className value to be applied to all tooltips' "tooltip-wrapper" elements (see FtuxTooltip elements/classes below)
   - backgroundColor: [HTML Color] Color to be used for background of all tooltips. Makes it easier to set border color property for all tooltip pointers, regardless of direction. Default value is `'#000'`.
   - nextLabel: [String] Custom text to replace `'Next'` on button
   - prevLabel: [String] Custom text to replace `'Prev'` on button
   - doneLabel: [String] Custom text to replace `'Done'` on button
 
-# ReactFtuxTooltip props:
+# <FtuxTooltip> props:
 
 - step (required): [Integer] 0-indexed step identifier
 - offsetTop: [Number] Pixels to move tooltip down from default positioning
@@ -62,20 +62,20 @@ Peer dependencies are `react` and `react-dom`.
 Default styles for tooltips can be modified by writing css rules for the elements, which are structured like so:
 
 ```
-<div id="step-0" className="tooltip-wrapper">
-    <div className="tooltip-body">
-        <div className="tooltip-pointer"></div>
-        <div className="tooltip-content"></div>
-        <div className="tooltip-buttons">
-            <button className="tooltip-button tooltip-button-prev"></button>
-            <button className="tooltip-button tooltip-button-next"></button>
-            <button className="tooltip-button tooltip-button-end"></button>
+<div id="ftux-id-0" className="ftux-tooltip">
+    <div className="ftux-tooltip-body">
+        <div className="ftux-tooltip-pointer"></div>
+        <div className="ftux-tooltip-content"></div>
+        <div className="ftux-tooltip-buttons">
+            <button className="ftux-tooltip-button ftux-tooltip-button-prev"></button>
+            <button className="ftux-tooltip-button ftux-tooltip-button-next"></button>
+            <button className="ftux-tooltip-button ftux-tooltip-button-end"></button>
         </div>
-        <span className="tooltip-close"></span>
+        <span className="ftux-tooltip-close"></span>
     </div>
 </div>
 ```
 
-Custom css classes can also be applied to the tooltip-wrapper element by setting the "className" property in the tooltipSettings object.
+Custom css classes can also be applied to the "ftux-tooltip" element by setting the "className" property in the tooltipSettings object.
 
-To prevent unwanted style inheritance from outside the tooltip component, tooltip-button elements have "all: unset" applied.
+To prevent unwanted style inheritance from outside the tooltip component, ftux-tooltip-button elements have "all: unset" applied.

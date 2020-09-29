@@ -1,7 +1,7 @@
 import React from "react";
 import { events, eventEmitter, ftuxStore } from "../events";
 
-class ReactFtux extends React.Component {
+class Ftux extends React.Component {
   constructor(props) {
     super(props);
 
@@ -85,4 +85,4 @@ class ReactFtux extends React.Component {
   }
 }
 
-export default ReactFtux;
+export default Ftux;

@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { ReactFtux, ReactFtuxTooltip } from "../../lib/bundle";
+import { Ftux, FtuxTooltip } from "../../lib/bundle";
 import {
     Container,
     Dropdown,
@@ -10,15 +10,13 @@ import {
     Icon
 } from 'semantic-ui-react'
 
-import './index.css';
-
 function Demo() {
     return (
         <div>
-            <ReactFtux
+            <Ftux
                 total={6}
                 tooltipSettings={{
-                    // className: 'themed-tooltip',
+                    className: 'themed-tooltip',
                     // backgroundColor: '#333',
                     // foregroundColor: 'red',
                     // highlightColor: 'pink'
@@ -34,33 +32,33 @@ function Demo() {
                 <Menu.Item as='a'>Users</Menu.Item>
 
                 
-                  <ReactFtuxTooltip step={0}>
+                  <FtuxTooltip step={0}>
                     <h5>Step 0 tooltip</h5>
                     <br />
-                    <p>The 'ReactFtuxTooltip' component is included as a sibling to the menu element. Click buttons, press arrow keys, or press Enter/Backspace keys to navigate through the tour. Esc key ends the tour.</p>
-                </ReactFtuxTooltip>
+                    <p>The 'FtuxTooltip' component is included as a sibling to the menu element. Click buttons, press arrow keys, or press Enter/Backspace keys to navigate through the tour. Esc key ends the tour.</p>
+                </FtuxTooltip>
                 <Menu.Item as='a'>Pages</Menu.Item>
 
-                <ReactFtuxTooltip step={1}>
+                <FtuxTooltip step={1}>
                     <h5>Step 1 tooltip</h5>
                     <br />
                     <p className='tooltip-text'>
                         Font styles for the buttons and tooltip content are not 
                         inherited from their parent elements, and can be controlled 
-                        by the 'fontStyle' prop on the 'ReactFtux' component. 
+                        by the 'fontStyle' prop on the 'Ftux' component. 
 
                         App style rules can still override these defaults for any
-                        child elements of 'ReactFtuxTooltip'.
+                        child elements of 'FtuxTooltip'.
                         
                         Note class 'tooltip-text' applied to this {'<p>'} element.</p>
-                </ReactFtuxTooltip>
+                </FtuxTooltip>
                 <Menu.Item as='a'>Settings</Menu.Item>
 
-                <ReactFtuxTooltip zIndex={1} step={2} >
+                <FtuxTooltip zIndex={1} step={2} >
                     <h5>Step 2 tooltip</h5>
                     <br />
                     <p>The 'zIndex' prop is set to {1} for this tooltip to preserve dropdown interaction.</p>
-                </ReactFtuxTooltip>
+                </FtuxTooltip>
                 <Dropdown item simple text='Dropdown'>
                     <Dropdown.Menu>
                         <Dropdown.Item>List Item</Dropdown.Item>
@@ -81,7 +79,7 @@ function Demo() {
             </Menu>
 
             <Menu style={{ top: 61 }} fixed="left" vertical inverted>
-                    <ReactFtuxTooltip
+                    <FtuxTooltip
                         pointerDirection='left'
                         offsetLeft={-160}
                         offsetTop={-10}
@@ -92,7 +90,7 @@ function Demo() {
                             <p>
                             This tooltip has the 'pointerDirection' prop set to 'left', 'offsetLeft' prop set to '-160', and 'offsetTop' prop set to '-10' to adjust tooltip position.
                             </p>
-                        </ReactFtuxTooltip>
+                        </FtuxTooltip>
                     <Menu.Item
                         name='Link'
                     />
@@ -105,11 +103,11 @@ function Demo() {
                 </Menu>
             <Container text style={{ marginTop: '7em', paddingLeft: '15rem' }}>
 
-            <ReactFtuxTooltip scrollToTop zIndex={1} step={5}>
+            <FtuxTooltip scrollToTop zIndex={1} step={5}>
                     <h5>Step 5 tooltip</h5>
                     <br />
                     <p>This tooltip has the 'scrollToTop' prop included, which is preferred over the 'scrollTo' prop for elements at the top of scrollable content.</p>
-                </ReactFtuxTooltip>
+                </FtuxTooltip>
                 <Header as='h1'>react-ftux demo</Header>
                 <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
                 <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
@@ -119,7 +117,7 @@ function Demo() {
                 <Image src="./assets/paragraph.png" style={{ marginTop: '2em' }} />
                 <br/>
                 <br/>
-                <ReactFtuxTooltip
+                <FtuxTooltip
                     scrollTo
                     pointerDirection='below'
                     step={4}>
@@ -128,7 +126,7 @@ function Demo() {
                         <p>
                         This tooltip has the 'scrollTo' prop included and the 'pointerDirection' prop set to 'below'.
                         </p>
-                        </ReactFtuxTooltip>
+                        </FtuxTooltip>
                 <Menu compact>
                     <Menu.Item>
                         <Icon name='twitter' />
