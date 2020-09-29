@@ -10,16 +10,18 @@ import {
     Icon
 } from 'semantic-ui-react'
 
+import './index.css';
+
 function Demo() {
     return (
         <div>
             <ReactFtux
                 total={6}
-                disable={false}
                 tooltipSettings={{
-                    disableCloseButton: false,
-                    disableKeydownListener: false,
-                    animationDuration: 0.4
+                    // className: 'themed-tooltip',
+                    // backgroundColor: '#333',
+                    // foregroundColor: 'red',
+                    // highlightColor: 'pink'
                 }}
                 ftuxEnd={() => {
                     console.log('ftux end');
@@ -145,3 +147,4 @@ function Demo() {
 }
 
 render(<Demo />, document.getElementById("app"));
+

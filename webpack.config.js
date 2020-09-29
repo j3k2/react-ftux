@@ -1,27 +1,31 @@
 const path = require("path");
 
 module.exports = {
-  entry: './docs/src/index.jsx',
+  entry: "./docs/src/index.jsx",
   output: {
     path: path.resolve(__dirname, "./docs/"),
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         use: "babel-loader",
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
   },
   devServer: {
-    contentBase: './docs/',
+    contentBase: "./docs/",
     port: 8000,
     stats: "minimal",
-    hot: true
-  }
+    hot: true,
+  },
 };

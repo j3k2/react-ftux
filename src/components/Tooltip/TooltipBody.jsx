@@ -1,10 +1,14 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 const CloseButton = styled.span`
-  :hover{
-    cursor: pointer;
-    color: ${props => props.highlightColor};
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  :hover {
+    color: ${(props) => props.highlightColor};
   }
 `;
 
@@ -25,37 +29,35 @@ const StyledTooltipBody = styled.div`
   border-radius: 5px;
   display: block;
   animation: ${opacityAnimation} ${props => props.animationDuration} ease-in;
+  transition: opacity 0.4s ease-in;
+  pointer-events: ${(props) => (props.display ? "auto" : "none")};
+  top: ${(props) => props.tooltipSettings.offsetTop}px;
+  left: ${(props) => props.tooltipSettings.offsetLeft}px;
+  bottom: ${(props) => props.tooltipSettings.offsetBottom}px;
+  right: ${(props) => props.tooltipSettings.offsetRight}px;
+  background-color: ${(props) => props.tooltipSettings.backgroundColor};
+  color: ${(props) => props.tooltipSettings.foregroundColor};
+  font: ${(props) => props.tooltipSettings.fontStyle};
+  width: ${(props) => props.tooltipSettings.tooltipWidth}px;
+  min-width: ${(props) => props.tooltipSettings.tooltipWidth}px;
 `;
 
 export default function (props) {
   return (
     <StyledTooltipBody
+      className={props.className}
+      tooltipSettings={props.tooltipSettings}
+      display={props.display.toString()}
       animationDuration={props.tooltipSettings.animationDuration + 's'}
-      style={Object.assign({}, props.tooltipSettings.style, {
-        pointerEvents: props.display ? 'auto' : 'none',
-        top: props.tooltipSettings.offsetTop,
-        left: props.tooltipSettings.offsetLeft,
-        bottom: props.tooltipSettings.offsetBottom,
-        right: props.tooltipSettings.offsetRight,
-        backgroundColor: props.tooltipSettings.backgroundColor,
-        color: props.tooltipSettings.foregroundColor,
-        font: props.tooltipSettings.fontStyle,
-        width: props.tooltipSettings.tooltipWidth,
-        minWidth: props.tooltipSettings.tooltipWidth
-      })}>
+    >
       {props.children}
       <CloseButton
-        style={{
-          position: 'absolute',
-          top: 4,
-          right: 6,
-          fontSize: 16,
-          display: props.tooltipSettings.disableCloseButton ? 'none' : null
-        }}
+        className="tooltip-close"
         highlightColor={props.tooltipSettings.highlightColor}
-        onClick={props.endFtux}>
+        onClick={props.endFtux}
+      >
         &#x2715;
-        </CloseButton>
+      </CloseButton>
     </StyledTooltipBody>
-  )
+  );
 }
