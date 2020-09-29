@@ -41,12 +41,7 @@ class ReactFtuxTooltip extends React.Component {
       prevLabel: "Prev",
       doneLabel: "Done",
       nextLabel: "Next",
-      animationDuration: 0.4,
-      tooltipWidth: 400,
-      backgroundColor: "#000",
-      foregroundColor: "#fff",
-      highlightColor: "#808080",
-      fontStyle: "14px Lato, Helvetica, Arial, sans-serif",
+      backgroundColor: "#000"
     };
 
     if (ftuxStore.ftuxProps.tooltipSettings) {

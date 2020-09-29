@@ -41,16 +41,11 @@ Peer dependencies are `react` and `react-dom`.
 - ftuxEnd: [Function] Callback to be called when the walkthrough is complete
 - disableKeydownListener: [Boolean] Disable arrow, Enter, Backspace, and Escape key listeners. Default value is `false`.
 - tooltipSettings: [Object] Settings to be applied to all tooltips
-    - className: [String] className value to be applied to all tooltips' "tooltip-wrapper" elements (see ReactFtuxTooltip elements/classes below)
-    - animationDuration: [Number] Seconds for fade-in animation. `0` turns off animation. Default value is `0.4`.
-    - backgroundColor: [HTML Color] Color to be used for background of all tooltips. Makes it easier to set border color property for all tooltip pointers, regardless of direction. Default value is `'#000'`.
-    - foregroundColor: [HTML Color] Color for text, borders, and buttons. Default value is `'#fff'`.
-    - highlightColor: [HTML Color] Hover color for button text and borders. Default value is `'#808080'`.
-    - fontStyle: [String] Value for `font` CSS property to be used on buttons and tooltip content. Default value is `'14px Lato, Helvetica, Arial, sans-serif'`
-    - tooltipWidth: [Number] Number of pixels for fixed tooltip width. Default value is `400`.
-    - nextLabel: [String] Custom text to replace `'Next'` on button
-    - prevLabel: [String] Custom text to replace `'Prev'` on button
-    - doneLabel: [String] Custom text to replace `'Done'` on button
+  - className: [String] className value to be applied to all tooltips' "tooltip-wrapper" elements (see ReactFtuxTooltip elements/classes below)
+  - backgroundColor: [HTML Color] Color to be used for background of all tooltips. Makes it easier to set border color property for all tooltip pointers, regardless of direction. Default value is `'#000'`.
+  - nextLabel: [String] Custom text to replace `'Next'` on button
+  - prevLabel: [String] Custom text to replace `'Prev'` on button
+  - doneLabel: [String] Custom text to replace `'Done'` on button
 
 # ReactFtuxTooltip props:
 
@@ -62,10 +57,12 @@ Peer dependencies are `react` and `react-dom`.
 - scrollToTop: [Boolean] When this step is displayed, scroll window to top
 - zIndex: [Number] Default value is `'auto'`
 
-# ReactFtuxTooltip elements/classes:
+# Tooltip styling notes:
 
-````
-<div className="tooltip-wrapper">
+Default styles for tooltips can be modified by writing css rules for the elements, which are structured like so:
+
+```
+<div id="step-0" className="tooltip-wrapper">
     <div className="tooltip-body">
         <div className="tooltip-pointer"></div>
         <div className="tooltip-content"></div>
@@ -78,4 +75,7 @@ Peer dependencies are `react` and `react-dom`.
     </div>
 </div>
 ```
-````
+
+Custom css classes can also be applied to the tooltip-wrapper element by setting the "className" property in the tooltipSettings object.
+
+To prevent unwanted style inheritance from outside the tooltip component, tooltip-button elements have "all: unset" applied.

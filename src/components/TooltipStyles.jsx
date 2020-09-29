@@ -7,9 +7,8 @@ const TooltipWrapper = styled.div`
 `;
 
 const TooltipBody = styled.div`
-  all: initial;
   padding: 20px;
-  position: fixed;
+  position: absolute;
   border-radius: 5px;
   opacity: ${(props) => props.display};
   transition: opacity 0.4s ease-in;
@@ -19,10 +18,9 @@ const TooltipBody = styled.div`
   bottom: ${(props) => props.tooltipSettings.offsetBottom}px;
   right: ${(props) => props.tooltipSettings.offsetRight}px;
   background-color: ${(props) => props.tooltipSettings.backgroundColor};
-  color: ${(props) => props.tooltipSettings.foregroundColor};
-  font: ${(props) => props.tooltipSettings.fontStyle};
-  width: ${(props) => props.tooltipSettings.tooltipWidth}px;
-  min-width: ${(props) => props.tooltipSettings.tooltipWidth}px;
+  color: #fff;
+  width: 400px;
+  font-size: 14px;
 `;
 
 const TooltipPointer = styled.div`
@@ -66,18 +64,19 @@ const TooltipButtons = styled.div`
 `;
 
 const TooltipButton = styled.button`
-  font: ${(props) => props.buttonFontStyle};
+  all: unset;
+  text-align: center;
   margin: 4px;
   width: 64px;
   height: 32px;
-  background-color: ${(props) => props.backgroundColor};
-  border: solid 1px ${(props) => props.foregroundColor};
+  background-color: #000;
+  border: solid 1px #fff;
   border-radius: 5px;
-  color: ${(props) => props.foregroundColor};
+  color: #fff;
   :hover {
     cursor: pointer;
-    color: ${(props) => props.highlightColor};
-    border-color: ${(props) => props.highlightColor};
+    color: #808080;
+    border-color: #808080;
   }
 `;
 
@@ -88,7 +87,7 @@ const CloseButton = styled.span`
   font-size: 16px;
   cursor: pointer;
   :hover {
-    color: ${(props) => props.highlightColor};
+    color: #808080;
   }
 `;
 
