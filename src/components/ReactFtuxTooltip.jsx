@@ -36,11 +36,12 @@ class ReactFtuxTooltip extends React.Component {
       prevLabel: "Prev",
       doneLabel: "Done",
       nextLabel: "Next",
+      animationDuration: 0.4,
       tooltipWidth: 400,
       backgroundColor: "#000",
       foregroundColor: "#fff",
       highlightColor: "#808080",
-      fontStyle: "14px Lato, Helvetica, Arial, sans-serif",
+      fontStyle: '14px Lato, Helvetica, Arial, sans-serif'
     };
 
     if (ftuxStore.ftuxProps.tooltipSettings) {
@@ -149,28 +150,30 @@ class ReactFtuxTooltip extends React.Component {
         id={`step-${this.props.step}`}
         zIndex={this.props.zIndex}
       >
-        <TooltipBody
-          className="tooltip-body"
-          tooltipSettings={this.tooltipSettings}
-          display={this.state.display}
-          endFtux={this.triggerEndFtux}
-        >
-          <TooltipPointer
-            className="tooltip-pointer"
-            pointerDirection={this.props.pointerDirection}
-            backgroundColor={this.tooltipSettings.backgroundColor}
-          />
-          <TooltipContent className="tooltip-content">
-            {this.props.children}
-          </TooltipContent>
-          <TooltipButtons
-            className="tooltip-buttons"
+        {this.state.display && (
+          <TooltipBody
+            className="tooltip-body"
             tooltipSettings={this.tooltipSettings}
-            increaseStep={this.triggerIncreaseStep}
-            decreaseStep={this.triggerDecreaseStep}
+            display={this.state.display}
             endFtux={this.triggerEndFtux}
-          />
-        </TooltipBody>
+          >
+            <TooltipPointer
+              className="tooltip-pointer"
+              pointerDirection={this.props.pointerDirection}
+              backgroundColor={this.tooltipSettings.backgroundColor}
+            />
+            <TooltipContent className="tooltip-content">
+              {this.props.children}
+            </TooltipContent>
+            <TooltipButtons
+              className="tooltip-buttons"
+              tooltipSettings={this.tooltipSettings}
+              increaseStep={this.triggerIncreaseStep}
+              decreaseStep={this.triggerDecreaseStep}
+              endFtux={this.triggerEndFtux}
+            />
+          </TooltipBody>
+        )}
       </TooltipWrapper>
     );
   }

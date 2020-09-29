@@ -42,6 +42,7 @@ Peer dependencies are `react` and `react-dom`.
 - disableKeydownListener: [Boolean] Disable arrow, Enter, Backspace, and Escape key listeners. Default value is `false`.
 - tooltipSettings: [Object] Settings to be applied to all tooltips
     - className: [String] className value to be applied to all tooltips' "tooltip-wrapper" elements (see ReactFtuxTooltip elements/classes below)
+    - animationDuration: [Number] Seconds for fade-in animation. `0` turns off animation. Default value is `0.4`.
     - backgroundColor: [HTML Color] Color to be used for background of all tooltips. Makes it easier to set border color property for all tooltip pointers, regardless of direction. Default value is `'#000'`.
     - foregroundColor: [HTML Color] Color for text, borders, and buttons. Default value is `'#fff'`.
     - highlightColor: [HTML Color] Hover color for button text and borders. Default value is `'#808080'`.
