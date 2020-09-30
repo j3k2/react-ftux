@@ -14,7 +14,7 @@ Peer dependencies are `react` and `react-dom`.
 
 # Usage:
 
-1. Import components as needed (`import {Ftux, FtuxTooltip} from '-ftux';`).
+1. Import components as needed (`import {Ftux, FtuxTooltip} from 'react-ftux';`).
 2. Add `<Ftux/>` to your app, with the required prop `total`.
 3. Add `<FtuxTooltip/>`, with the required prop `step`, as a sibling before every element that should have a tooltip pointed to it.
 4. Elements that are children to `FtuxTooltip` will be used as the content for that tooltip.
