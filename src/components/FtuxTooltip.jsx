@@ -1,5 +1,5 @@
 import React from "react";
-import { events, eventEmitter, ftuxStore } from "../events";
+import { useFtuxContext } from "./FtuxContext.jsx";
 import {
   TooltipBody,
   TooltipContent,
@@ -10,202 +10,151 @@ import {
   TooltipButton,
 } from "./TooltipStyles.jsx";
 
-class FtuxTooltip extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      display: false,
-    };
-    this.initializeTooltip();
-  }
+export default function FtuxTooltip(props) {
+  const {
+    tooltipProperties,
+    increaseStep,
+    decreaseStep,
+    endFtux,
+    ftuxStep,
+    ftuxTotalSteps,
+  } = useFtuxContext();
 
-  triggerEndFtux = () => {
-    eventEmitter.trigger(events.END_FTUX);
-  };
+  const [displayTooltip, setDisplayTooltip] = React.useState(false);
 
-  triggerIncreaseStep = () => {
-    eventEmitter.trigger(events.INCREASE_STEP);
-  };
+  const [offsets, setOffsets] = React.useState();
 
-  triggerDecreaseStep = () => {
-    eventEmitter.trigger(events.DECREASE_STEP);
-  };
+  const ref = React.useRef();
 
-  initializeTooltip = () => {
-    this.tooltipSettings = {
-      first: this.props.step === 0,
-      last:
-        ftuxStore.ftuxProps &&
-        this.props.step === ftuxStore.ftuxProps.total - 1,
-      // Default values:
-      prevLabel: "Prev",
-      doneLabel: "Done",
-      nextLabel: "Next",
-      backgroundColor: "#000"
-    };
+  const setPosition = () => {
+    const temp = {};
 
-    if (ftuxStore.ftuxProps.tooltipSettings) {
-      // Override defaults:
-      this.tooltipSettings = Object.assign(
-        this.tooltipSettings,
-        ftuxStore.ftuxProps.tooltipSettings
-      );
-    }
-  };
-
-  setPosition = () => {
-    if (
-      !this.props.pointerDirection ||
-      this.props.pointerDirection === "above"
-    ) {
-      this.tooltipSettings.offsetTop =
-        this.tooltipRef.nextSibling.offsetHeight +
-        16 +
-        (this.props.offsetTop || 0);
-      if (this.props.offsetLeft) {
-        this.tooltipSettings.offsetLeft = this.props.offsetLeft;
+    if (!props.pointerDirection || props.pointerDirection === "above") {
+      temp.offsetTop =
+        ref.current.nextSibling.offsetHeight + 16 + (props.offsetTop || 0);
+      if (props.offsetLeft) {
+        temp.offsetLeft = props.offsetLeft;
       }
     }
-    if (this.props.pointerDirection === "left") {
-      this.tooltipSettings.offsetLeft =
-        this.tooltipRef.nextSibling.offsetWidth +
-        16 +
-        (this.props.offsetLeft || 0);
-      if (this.props.offsetTop) {
-        this.tooltipSettings.offsetTop = this.props.offsetTop;
+    if (props.pointerDirection === "left") {
+      temp.offsetLeft =
+        ref.current.nextSibling.offsetWidth + 16 + (props.offsetLeft || 0);
+      if (props.offsetTop) {
+        temp.offsetTop = props.offsetTop;
       }
     }
-    if (this.props.pointerDirection === "below") {
-      this.tooltipSettings.offsetBottom = 16 + (-this.props.offsetTop || 0);
-      if (this.props.offsetLeft) {
-        this.tooltipSettings.offsetLeft = this.props.offsetLeft;
+    if (props.pointerDirection === "below") {
+      temp.offsetBottom = 16 + (-props.offsetTop || 0);
+      if (props.offsetLeft) {
+        temp.offsetLeft = props.offsetLeft;
       }
     }
-    if (this.props.pointerDirection === "right") {
-      this.tooltipSettings.offsetRight = 16 + (-this.props.offsetLeft || 0);
-      if (this.props.offsetTop) {
-        this.tooltipSettings.offsetTop = this.props.offsetTop;
+    if (props.pointerDirection === "right") {
+      temp.offsetRight = 16 + (-props.offsetLeft || 0);
+      if (props.offsetTop) {
+        temp.offsetTop = props.offsetTop;
       }
     }
+    setOffsets(temp);
   };
 
-  updateTooltipState = (updatedFtuxStore) => {
-    if (this.props.step === updatedFtuxStore.currentStep) {
-      if (this.props.scrollTo) {
-        window.scrollTo(0, this.tooltipRef.offsetTop);
+  React.useEffect(() => {
+    if (props.step === ftuxStep) {
+      if (props.scrollTo) {
+        window.scrollTo(0, ref.current.offsetTop);
       }
-      if (this.props.scrollToTop) {
+      if (props.scrollToTop) {
         window.scrollTo(0, 0);
       }
 
-      this.setState({
-        display: true,
-      });
+      setDisplayTooltip(true);
     } else {
-      this.setState({
-        display: false,
-      });
+      setDisplayTooltip(false);
     }
+  }, [ftuxStep, props.step, props.scrollTo, props.scrollToTop]);
+
+  const tooltipSettings = {
+    first: props.step === 0,
+    last: props.step === ftuxTotalSteps - 1,
+    // Default values:
+    prevLabel: "Prev",
+    doneLabel: "Done",
+    nextLabel: "Next",
+    backgroundColor: "#000",
   };
 
-  setTooltipRef = (element) => {
-    this.tooltipRef = element;
+  const initializeTooltip = () => {
+    if (tooltipProperties) {
+      tooltipSettings = { ...tooltipSettings, ...tooltipProperties };
+    }
+    setPosition();
   };
 
-  componentDidMount() {
-    eventEmitter.on(events.UPDATE_FTUX, (updatedFtuxStore) => {
-      this.updateTooltipState(updatedFtuxStore);
-    });
-    eventEmitter.on(events.END_FTUX, () => {
-      this.updateTooltipState({ currentStep: null });
-    });
-    eventEmitter.trigger(events.UPDATE_FTUX, [ftuxStore]);
-    this.setPosition();
-  }
+  React.useEffect(initializeTooltip, [props.step]);
 
-  componentWillUnmount() {
-    eventEmitter.off(events.END_FTUX);
-    eventEmitter.off(events.UPDATE_FTUX);
-  }
-
-  render() {
-    return (
-      <TooltipWrapper
-        ref={this.setTooltipRef}
-        className={`ftux-tooltip ${
-          this.tooltipSettings.className ? this.tooltipSettings.className : ""
-        }`}
-        id={`ftux-id-${this.props.step}`}
-        zIndex={this.props.zIndex}
+  return (
+    <TooltipWrapper
+      ref={ref}
+      className={`ftux-tooltip ${
+        tooltipSettings.className ? tooltipSettings.className : ""
+      }`}
+      id={`ftux-id-${props.step}`}
+      zIndex={props.zIndex}
+    >
+      <TooltipBody
+        className="ftux-tooltip-body"
+        backgroundColor={tooltipSettings.backgroundColor}
+        offsets={offsets}
+        display={displayTooltip ? 1 : 0}
       >
-        <TooltipBody
-          className="ftux-tooltip-body"
-          tooltipSettings={this.tooltipSettings}
-          display={this.state.display ? 1 : 0}
-        >
-          {this.props.pointerDirection ? (
-            <TooltipPointer
-              className={`ftux-tooltip-pointer ${this.props.pointerDirection}`}
-              backgroundColor={this.tooltipSettings.backgroundColor}
-            ></TooltipPointer>
-          ) : (
-            <TooltipPointer
-              className={`ftux-tooltip-pointer above`}
-              backgroundColor={this.tooltipSettings.backgroundColor}
-            ></TooltipPointer>
+        {props.pointerDirection ? (
+          <TooltipPointer
+            className={`ftux-tooltip-pointer ${props.pointerDirection}`}
+            backgroundColor={tooltipSettings.backgroundColor}
+          ></TooltipPointer>
+        ) : (
+          <TooltipPointer
+            className={`ftux-tooltip-pointer above`}
+            backgroundColor={tooltipSettings.backgroundColor}
+          ></TooltipPointer>
+        )}
+        <TooltipContent className="ftux-tooltip-content">
+          {props.children}
+        </TooltipContent>
+        <TooltipButtons className="ftux-tooltip-buttons">
+          {!tooltipSettings.first && (
+            <TooltipButton
+              className="ftux-tooltip-button ftux-tooltip-button-prev"
+              onClick={decreaseStep}
+            >
+              {tooltipSettings.prevLabel}
+            </TooltipButton>
           )}
-          <TooltipContent className="ftux-tooltip-content">
-            {this.props.children}
-          </TooltipContent>
-          <TooltipButtons className="ftux-tooltip-buttons">
-            {!this.tooltipSettings.first && (
-              <TooltipButton
-                className="ftux-tooltip-button ftux-tooltip-button-prev"
-                buttonFontStyle={this.tooltipSettings.fontStyle}
-                backgroundColor={this.tooltipSettings.backgroundColor}
-                foregroundColor={this.tooltipSettings.foregroundColor}
-                highlightColor={this.tooltipSettings.highlightColor}
-                onClick={this.triggerDecreaseStep}
-              >
-                {this.tooltipSettings.prevLabel}
-              </TooltipButton>
-            )}
-            {!this.tooltipSettings.last && (
-              <TooltipButton
-                className="ftux-tooltip-button ftux-tooltip-button-next"
-                buttonFontStyle={this.tooltipSettings.fontStyle}
-                backgroundColor={this.tooltipSettings.backgroundColor}
-                foregroundColor={this.tooltipSettings.foregroundColor}
-                highlightColor={this.tooltipSettings.highlightColor}
-                onClick={this.triggerIncreaseStep}
-              >
-                {this.tooltipSettings.nextLabel}
-              </TooltipButton>
-            )}
-            {this.tooltipSettings.last && (
-              <TooltipButton
-                className="ftux-tooltip-button ftux-tooltip-button-end"
-                buttonFontStyle={this.tooltipSettings.fontStyle}
-                backgroundColor={this.tooltipSettings.backgroundColor}
-                foregroundColor={this.tooltipSettings.foregroundColor}
-                highlightColor={this.tooltipSettings.highlightColor}
-                onClick={this.triggerEndFtux}
-              >
-                {this.tooltipSettings.doneLabel}
-              </TooltipButton>
-            )}
-          </TooltipButtons>
-          <CloseButton
-            className="ftux-tooltip-close"
-            highlightColor={this.tooltipSettings.highlightColor}
-            onClick={this.triggerEndFtux}
-          >
-            &#x2715;
-          </CloseButton>
-        </TooltipBody>
-      </TooltipWrapper>
-    );
-  }
+          {!tooltipSettings.last && (
+            <TooltipButton
+              className="ftux-tooltip-button ftux-tooltip-button-next"
+              onClick={increaseStep}
+            >
+              {tooltipSettings.nextLabel}
+            </TooltipButton>
+          )}
+          {tooltipSettings.last && (
+            <TooltipButton
+              className="ftux-tooltip-button ftux-tooltip-button-end"
+              onClick={endFtux}
+            >
+              {tooltipSettings.doneLabel}
+            </TooltipButton>
+          )}
+        </TooltipButtons>
+        <CloseButton
+          className="ftux-tooltip-close"
+          highlightColor={tooltipSettings.highlightColor}
+          onClick={endFtux}
+        >
+          &#x2715;
+        </CloseButton>
+      </TooltipBody>
+    </TooltipWrapper>
+  );
 }
-
-export default FtuxTooltip;

@@ -13,11 +13,11 @@ const TooltipBody = styled.div`
   opacity: ${(props) => props.display};
   transition: opacity 0.4s ease-in;
   pointer-events: ${(props) => (props.display ? "auto" : "none")};
-  top: ${(props) => props.tooltipSettings.offsetTop}px;
-  left: ${(props) => props.tooltipSettings.offsetLeft}px;
-  bottom: ${(props) => props.tooltipSettings.offsetBottom}px;
-  right: ${(props) => props.tooltipSettings.offsetRight}px;
-  background-color: ${(props) => props.tooltipSettings.backgroundColor};
+  top: ${(props) => props.offsets ? props.offsets.offsetTop : ''}px;
+  left: ${(props) => props.offsets ? props.offsets.offsetLeft : ''}px;
+  bottom: ${(props) => props.offsets ? props.offsets.offsetBottom : ''}px;
+  right: ${(props) => props.offsets ? props.offsets.offsetRight : ''}px;
+  background-color: ${(props) => props.backgroundColor};
   color: #fff;
   width: 400px;
   font-size: 14px;

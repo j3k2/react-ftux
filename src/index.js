@@ -1,4 +1,4 @@
-import Ftux from './components/Ftux.jsx';
-import FtuxTooltip from './components/FtuxTooltip.jsx';
+import { FtuxProvider } from "./components/FtuxContext.jsx";
+import FtuxTooltip from "./components/FtuxTooltip.jsx";
 
-export { Ftux, FtuxTooltip };
+export { FtuxProvider, FtuxTooltip };

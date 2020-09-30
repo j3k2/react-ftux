@@ -11,8 +11,7 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
-    "styled-components": "^4.4.1",
-    "wolfy87-eventemitter": "^5.2.9"
+    "styled-components": "^4.4.1"
   },
   "peerDependencies": {
     "react": "^16.4.1",

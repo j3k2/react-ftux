@@ -14,15 +14,15 @@ Peer dependencies are `react` and `react-dom`.
 
 # Usage:
 
-1. Import components as needed (`import {Ftux, FtuxTooltip} from 'react-ftux';`).
-2. Add `<Ftux/>` to your app, with the required prop `total`.
+1. Import components as needed (`import {FtuxProvider, FtuxTooltip} from 'react-ftux';`).
+2. Add `<FtuxProvider/>` to your app, with the required prop `total`. It must be an ancestor element to all `<FtuxTooltip/>` elements.
 3. Add `<FtuxTooltip/>`, with the required prop `step`, as a sibling before every element that should have a tooltip pointed to it.
-4. Elements that are children to `FtuxTooltip` will be used as the content for that tooltip.
+4. Elements that are children of a particular `<FtuxTooltip/>` will be used as the content for that tooltip.
 
 # Example:
 
 ```
-<Ftux total={2}/>
+<FtuxProvider total={2}>
 <FtuxTooltip step={0}>
     <span>Step 1</span>
 </FtuxTooltip>
@@ -32,22 +32,23 @@ Peer dependencies are `react` and `react-dom`.
     <span>Step 2</span>
 </FtuxTooltip>
 <div>Step 2 points here</div>
+</FtuxProvider>
 ```
 
-# <Ftux> props:
+# <FtuxProvider/> props:
 
 - total (required): [Integer] Total number of steps in walkthrough
 - disable: [Boolean] Hide/end walkthrough
-- ftuxEnd: [Function] Callback to be called when the walkthrough is complete
+- onFtuxEnd: [Function] Callback to be called when the walkthrough is complete
 - disableKeydownListener: [Boolean] Disable arrow, Enter, Backspace, and Escape key listeners. Default value is `false`.
-- tooltipSettings: [Object] Settings to be applied to all tooltips
+- tooltipProperties: [Object] Settings to be applied to all tooltips
   - className: [String] className value to be applied to all tooltips' "tooltip-wrapper" elements (see FtuxTooltip elements/classes below)
   - backgroundColor: [HTML Color] Color to be used for background of all tooltips. Makes it easier to set border color property for all tooltip pointers, regardless of direction. Default value is `'#000'`.
   - nextLabel: [String] Custom text to replace `'Next'` on button
   - prevLabel: [String] Custom text to replace `'Prev'` on button
   - doneLabel: [String] Custom text to replace `'Done'` on button
 
-# <FtuxTooltip> props:
+# <FtuxTooltip/> props:
 
 - step (required): [Integer] 0-indexed step identifier
 - offsetTop: [Number] Pixels to move tooltip down from default positioning
