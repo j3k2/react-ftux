@@ -20,55 +20,82 @@ function Demo() {
         <Menu.Item as="a">Home</Menu.Item>
         <Menu.Item as="a">Users</Menu.Item>
 
-        <FtuxTooltip step={0}>
-          <h5>Step 0 tooltip</h5>
-          <br />
-          <p>
-            The 'FtuxTooltip' component is included as a sibling to the menu
-            element. Click buttons, press arrow keys, or press Enter/Backspace
-            keys to navigate through the tour. Esc key ends the tour.
-          </p>
+        <FtuxTooltip
+          step={0}
+          content={() => {
+            return (
+              <React.Fragment>
+                <h5>Step 0 tooltip</h5>
+                <br />
+                <p>
+                  The 'FtuxTooltip' component is included as a sibling to the
+                  menu element. Click buttons, press arrow keys, or press
+                  Enter/Backspace keys to navigate through the tour. Esc key
+                  ends the tour.
+                </p>
+              </React.Fragment>
+            );
+          }}
+        >
+          <Menu.Item as="a">Pages</Menu.Item>
         </FtuxTooltip>
-        <Menu.Item as="a">Pages</Menu.Item>
 
-        <FtuxTooltip step={1}>
-          <h5>Step 1 tooltip</h5>
-          <br />
-          <p className="tooltip-text">
-            Font styles for the buttons and tooltip content are not inherited
-            from their parent elements, and can be controlled by the 'fontStyle'
-            prop on the 'Ftux' component. App style rules can still override
-            these defaults for any child elements of 'FtuxTooltip'. Note class
-            'tooltip-text' applied to this {"<p>"} element.
-          </p>
+        <FtuxTooltip
+          step={1}
+          content={() => {
+            return (
+              <React.Fragment>
+                <h5>Step 1 tooltip</h5>
+                <br />
+                <p className="tooltip-text">
+                  Font styles for the buttons and tooltip content are not
+                  inherited from their parent elements, and can be controlled by
+                  the 'fontStyle' prop on the 'Ftux' component. App style rules
+                  can still override these defaults for any child elements of
+                  'FtuxTooltip'. Note class 'tooltip-text' applied to this{" "}
+                  {"<p>"} element.
+                </p>
+              </React.Fragment>
+            );
+          }}
+        >
+          <Menu.Item as="a">Settings</Menu.Item>
         </FtuxTooltip>
-        <Menu.Item as="a">Settings</Menu.Item>
 
-        <FtuxTooltip zIndex={1} step={2}>
-          <h5>Step 2 tooltip</h5>
-          <br />
-          <p>
-            The 'zIndex' prop is set to {1} for this tooltip to preserve
-            dropdown interaction.
-          </p>
+        <FtuxTooltip
+          zIndex={1}
+          step={2}
+          content={() => {
+            return (
+              <React.Fragment>
+                <h5>Step 2 tooltip</h5>
+                <br />
+                <p>
+                  The 'zIndex' prop is set to {1} for this tooltip to preserve
+                  dropdown interaction.
+                </p>
+              </React.Fragment>
+            );
+          }}
+        >
+          <Dropdown item simple text="Dropdown">
+            <Dropdown.Menu>
+              <Dropdown.Item>List Item</Dropdown.Item>
+              <Dropdown.Item>List Item</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Header>Header Item</Dropdown.Header>
+              <Dropdown.Item>
+                <i className="dropdown icon" />
+                <span className="text">Submenu</span>
+                <Dropdown.Menu>
+                  <Dropdown.Item>List Item</Dropdown.Item>
+                  <Dropdown.Item>List Item</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown.Item>
+              <Dropdown.Item>List Item</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </FtuxTooltip>
-        <Dropdown item simple text="Dropdown">
-          <Dropdown.Menu>
-            <Dropdown.Item>List Item</Dropdown.Item>
-            <Dropdown.Item>List Item</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Header>Header Item</Dropdown.Header>
-            <Dropdown.Item>
-              <i className="dropdown icon" />
-              <span className="text">Submenu</span>
-              <Dropdown.Menu>
-                <Dropdown.Item>List Item</Dropdown.Item>
-                <Dropdown.Item>List Item</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown.Item>
-            <Dropdown.Item>List Item</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
       </Menu>
 
       <Menu style={{ top: 61 }} fixed="left" vertical inverted>
@@ -78,30 +105,46 @@ function Demo() {
           offsetTop={-10}
           zIndex={1}
           step={3}
+          content={() => {
+            return (
+              <React.Fragment>
+                <h5>Step 3 tooltip</h5>
+                <br />
+                <p>
+                  This tooltip has the 'pointerDirection' prop set to 'left',
+                  'offsetLeft' prop set to '-160', and 'offsetTop' prop set to
+                  '-10' to adjust tooltip position.
+                </p>
+              </React.Fragment>
+            );
+          }}
         >
-          <h5>Step 3 tooltip</h5>
-          <br />
-          <p>
-            This tooltip has the 'pointerDirection' prop set to 'left',
-            'offsetLeft' prop set to '-160', and 'offsetTop' prop set to '-10'
-            to adjust tooltip position.
-          </p>
+          <Menu.Item name="Link" />
         </FtuxTooltip>
-        <Menu.Item name="Link" />
         <Menu.Item name="More" />
         <Menu.Item name="Other " />
       </Menu>
       <Container text style={{ marginTop: "7em", paddingLeft: "15rem" }}>
-        <FtuxTooltip scrollToTop zIndex={1} step={5}>
-          <h5>Step 5 tooltip</h5>
-          <br />
-          <p>
-            This tooltip has the 'scrollToTop' prop included, which is preferred
-            over the 'scrollTo' prop for elements at the top of scrollable
-            content.
-          </p>
+        <FtuxTooltip
+          scrollToTop
+          zIndex={1}
+          step={5}
+          content={() => {
+            return (
+              <React.Fragment>
+                <h5>Step 5 tooltip</h5>
+                <br />
+                <p>
+                  This tooltip has the 'scrollToTop' prop included, which is
+                  preferred over the 'scrollTo' prop for elements at the top of
+                  scrollable content.
+                </p>
+              </React.Fragment>
+            );
+          }}
+        >
+          <Header as="h1">react-ftux demo</Header>
         </FtuxTooltip>
-        <Header as="h1">react-ftux demo</Header>
         <Image src="./assets/paragraph.png" style={{ marginTop: "2em" }} />
         <Image src="./assets/paragraph.png" style={{ marginTop: "2em" }} />
         <Image src="./assets/paragraph.png" style={{ marginTop: "2em" }} />
@@ -110,25 +153,35 @@ function Demo() {
         <Image src="./assets/paragraph.png" style={{ marginTop: "2em" }} />
         <br />
         <br />
-        <FtuxTooltip scrollTo pointerDirection="below" step={4}>
-          <h5>Step 4 tooltip</h5>
-          <br />
-          <p>
-            This tooltip has the 'scrollTo' prop included and the
-            'pointerDirection' prop set to 'below'.
-          </p>
+        <FtuxTooltip
+          scrollTo
+          pointerDirection="below"
+          step={4}
+          content={() => {
+            return (
+              <React.Fragment>
+                <h5>Step 4 tooltip</h5>
+                <br />
+                <p>
+                  This tooltip has the 'scrollTo' prop included and the
+                  'pointerDirection' prop set to 'below'.
+                </p>
+              </React.Fragment>
+            );
+          }}
+        >
+          <Menu compact>
+            <Menu.Item>
+              <Icon name="twitter" />
+            </Menu.Item>
+            <Menu.Item>
+              <Icon name="facebook" />
+            </Menu.Item>
+            <Menu.Item>
+              <Icon name="mail" />
+            </Menu.Item>
+          </Menu>
         </FtuxTooltip>
-        <Menu compact>
-          <Menu.Item>
-            <Icon name="twitter" />
-          </Menu.Item>
-          <Menu.Item>
-            <Icon name="facebook" />
-          </Menu.Item>
-          <Menu.Item>
-            <Icon name="mail" />
-          </Menu.Item>
-        </Menu>
       </Container>
     </div>
   );

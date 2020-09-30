@@ -16,22 +16,24 @@ Peer dependencies are `react` and `react-dom`.
 
 1. Import components as needed (`import {FtuxProvider, FtuxTooltip} from 'react-ftux';`).
 2. Add `<FtuxProvider/>` to your app, with the required prop `total`. It must be an ancestor element to all `<FtuxTooltip/>` elements.
-3. Add `<FtuxTooltip/>`, with the required prop `step`, as a sibling before every element that should have a tooltip pointed to it.
-4. Elements that are children of a particular `<FtuxTooltip/>` will be used as the content for that tooltip.
+3. Add `<FtuxTooltip/>` as a wrapper/parent to any element that should have a tooltip pointed to it.
+4. `<FtuxTooltip/>`'s `step` prop is required. Its `content` prop accepts a component to be rendered inside the tooltip.
 
 # Example:
 
 ```
 <FtuxProvider total={2}>
-<FtuxTooltip step={0}>
-    <span>Step 1</span>
+<FtuxTooltip step={0} content={()=>{
+    return <span>Step 1</span>;
+}}>
+    <div>Step 1 points here</div>
 </FtuxTooltip>
-<div>Step 1 points here</div>
 
-<FtuxTooltip step={1}>
-    <span>Step 2</span>
+<FtuxTooltip step={1} content={()=>{
+    return <span>Step 2</span>;
+}}>
+    <div>Step 2 points here</div>
 </FtuxTooltip>
-<div>Step 2 points here</div>
 </FtuxProvider>
 ```
 
@@ -51,6 +53,7 @@ Peer dependencies are `react` and `react-dom`.
 # <FtuxTooltip/> props:
 
 - step (required): [Integer] 0-indexed step identifier
+- content: [Function] React component to be rendered inside the tooltip
 - offsetTop: [Number] Pixels to move tooltip down from default positioning
 - offsetLeft: [Number] Pixels to moSve tooltip left from default positioning
 - pointerDirection: [String] Direction of tooltip pointer. Positioning of the tooltip is also adjusted. Valid values are `'above'`/`'below'`/`'left'`/`'right'`. Default value is `'above'`.

@@ -93,68 +93,71 @@ export default function FtuxTooltip(props) {
   React.useEffect(initializeTooltip, [props.step]);
 
   return (
-    <TooltipWrapper
-      ref={ref}
-      className={`ftux-tooltip ${
-        tooltipSettings.className ? tooltipSettings.className : ""
-      }`}
-      id={`ftux-id-${props.step}`}
-      zIndex={props.zIndex}
-    >
-      <TooltipBody
-        className="ftux-tooltip-body"
-        backgroundColor={tooltipSettings.backgroundColor}
-        offsets={offsets}
-        display={displayTooltip ? 1 : 0}
+    <React.Fragment>
+      <TooltipWrapper
+        ref={ref}
+        className={`ftux-tooltip ${
+          tooltipSettings.className ? tooltipSettings.className : ""
+        }`}
+        id={`ftux-id-${props.step}`}
+        zIndex={props.zIndex}
       >
-        {props.pointerDirection ? (
-          <TooltipPointer
-            className={`ftux-tooltip-pointer ${props.pointerDirection}`}
-            backgroundColor={tooltipSettings.backgroundColor}
-          ></TooltipPointer>
-        ) : (
-          <TooltipPointer
-            className={`ftux-tooltip-pointer above`}
-            backgroundColor={tooltipSettings.backgroundColor}
-          ></TooltipPointer>
-        )}
-        <TooltipContent className="ftux-tooltip-content">
-          {props.children}
-        </TooltipContent>
-        <TooltipButtons className="ftux-tooltip-buttons">
-          {!tooltipSettings.first && (
-            <TooltipButton
-              className="ftux-tooltip-button ftux-tooltip-button-prev"
-              onClick={decreaseStep}
-            >
-              {tooltipSettings.prevLabel}
-            </TooltipButton>
-          )}
-          {!tooltipSettings.last && (
-            <TooltipButton
-              className="ftux-tooltip-button ftux-tooltip-button-next"
-              onClick={increaseStep}
-            >
-              {tooltipSettings.nextLabel}
-            </TooltipButton>
-          )}
-          {tooltipSettings.last && (
-            <TooltipButton
-              className="ftux-tooltip-button ftux-tooltip-button-end"
-              onClick={endFtux}
-            >
-              {tooltipSettings.doneLabel}
-            </TooltipButton>
-          )}
-        </TooltipButtons>
-        <CloseButton
-          className="ftux-tooltip-close"
-          highlightColor={tooltipSettings.highlightColor}
-          onClick={endFtux}
+        <TooltipBody
+          className="ftux-tooltip-body"
+          backgroundColor={tooltipSettings.backgroundColor}
+          offsets={offsets}
+          display={displayTooltip ? 1 : 0}
         >
-          &#x2715;
-        </CloseButton>
-      </TooltipBody>
-    </TooltipWrapper>
+          {props.pointerDirection ? (
+            <TooltipPointer
+              className={`ftux-tooltip-pointer ${props.pointerDirection}`}
+              backgroundColor={tooltipSettings.backgroundColor}
+            ></TooltipPointer>
+          ) : (
+            <TooltipPointer
+              className={`ftux-tooltip-pointer above`}
+              backgroundColor={tooltipSettings.backgroundColor}
+            ></TooltipPointer>
+          )}
+          <TooltipContent className="ftux-tooltip-content">
+            {props.content && props.content()}
+          </TooltipContent>
+          <TooltipButtons className="ftux-tooltip-buttons">
+            {!tooltipSettings.first && (
+              <TooltipButton
+                className="ftux-tooltip-button ftux-tooltip-button-prev"
+                onClick={decreaseStep}
+              >
+                {tooltipSettings.prevLabel}
+              </TooltipButton>
+            )}
+            {!tooltipSettings.last && (
+              <TooltipButton
+                className="ftux-tooltip-button ftux-tooltip-button-next"
+                onClick={increaseStep}
+              >
+                {tooltipSettings.nextLabel}
+              </TooltipButton>
+            )}
+            {tooltipSettings.last && (
+              <TooltipButton
+                className="ftux-tooltip-button ftux-tooltip-button-end"
+                onClick={endFtux}
+              >
+                {tooltipSettings.doneLabel}
+              </TooltipButton>
+            )}
+          </TooltipButtons>
+          <CloseButton
+            className="ftux-tooltip-close"
+            highlightColor={tooltipSettings.highlightColor}
+            onClick={endFtux}
+          >
+            &#x2715;
+          </CloseButton>
+        </TooltipBody>
+      </TooltipWrapper>
+      {props.children}
+    </React.Fragment>
   );
 }
