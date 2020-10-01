@@ -14,7 +14,7 @@ Peer dependencies are `react` and `react-dom`.
 
 # Usage:
 
-1. Import components as needed (`import {FtuxProvider, FtuxTooltip} from 'react-ftux';`).
+1. Import components as needed (`import { FtuxProvider, FtuxTooltip } from 'react-ftux';`).
 2. Add `<FtuxProvider>` to your app, with the required prop `total`. It must be an ancestor element to all `<FtuxTooltip>` elements.
 3. Add `<FtuxTooltip>` as a wrapper/parent to any element that should have a tooltip pointed to it.
 4. `<FtuxTooltip>`'s `step` prop is required. Its `content` prop accepts a component to be rendered inside the tooltip.
@@ -44,7 +44,7 @@ Peer dependencies are `react` and `react-dom`.
 - onFtuxEnd: [Function] Callback to be called when the walkthrough is complete
 - disableKeydownListener: [Boolean] Disable arrow, Enter, Backspace, and Escape key listeners. Default value is `false`.
 - tooltipProperties: [Object] Settings to be applied to all tooltips
-  - className: [String] className value to be applied to all tooltips' "tooltip-wrapper" elements (see FtuxTooltip elements/classes below)
+  - className: [String] className value to be applied to all tooltips' "ftux-tooltip" elements (see FtuxTooltip elements/classes below)
   - backgroundColor: [HTML Color] Color to be used for background of all tooltips. Makes it easier to set border color property for all tooltip pointers, regardless of direction. Default value is `'#000'`.
   - nextLabel: [String] Custom text to replace `'Next'` on button
   - prevLabel: [String] Custom text to replace `'Prev'` on button
