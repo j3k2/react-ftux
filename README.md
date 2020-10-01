@@ -55,7 +55,7 @@ Peer dependencies are `react` and `react-dom`.
 - step (required): [Integer] 0-indexed step identifier
 - content: [Function] React component to be rendered inside the tooltip
 - offsetTop: [Number] Pixels to move tooltip down from default positioning
-- offsetLeft: [Number] Pixels to moSve tooltip left from default positioning
+- offsetLeft: [Number] Pixels to move tooltip left from default positioning
 - pointerDirection: [String] Direction of tooltip pointer. Positioning of the tooltip is also adjusted. Valid values are `'above'`/`'below'`/`'left'`/`'right'`. Default value is `'above'`.
 - scrollTo: [Boolean] When this step is displayed, scroll window to tooltip
 - scrollToTop: [Boolean] When this step is displayed, scroll window to top
