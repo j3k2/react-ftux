@@ -22,6 +22,16 @@ export default function FtuxTooltip(props) {
 
   const [displayTooltip, setDisplayTooltip] = React.useState(false);
 
+  const [tooltipSettings, setTooltipSettings] = React.useState({
+    first: props.step === 0,
+    last: props.step === ftuxTotalSteps - 1,
+    // Default values:
+    prevLabel: "Prev",
+    doneLabel: "Done",
+    nextLabel: "Next",
+    backgroundColor: "#000",
+  });
+
   const [offsets, setOffsets] = React.useState();
 
   const ref = React.useRef();
@@ -73,16 +83,6 @@ export default function FtuxTooltip(props) {
     }
   }, [ftuxStep, props.step, props.scrollTo, props.scrollToTop]);
 
-  const tooltipSettings = {
-    first: props.step === 0,
-    last: props.step === ftuxTotalSteps - 1,
-    // Default values:
-    prevLabel: "Prev",
-    doneLabel: "Done",
-    nextLabel: "Next",
-    backgroundColor: "#000",
-  };
-
   const initializeTooltip = () => {
     if (
       (!props.step && props.step !== 0) ||
@@ -94,11 +94,14 @@ export default function FtuxTooltip(props) {
         `react-ftux error: FtuxTooltip requires a valid value for its 'step' prop.`
       );
     }
-    if (tooltipProperties) {
-      tooltipSettings = { ...tooltipSettings, ...tooltipProperties };
-    }
     setPosition();
   };
+
+  React.useEffect(() => {
+    if(tooltipProperties) {
+      setTooltipSettings({...tooltipSettings, ...tooltipProperties})
+    }
+  }, [tooltipProperties]);
 
   React.useEffect(initializeTooltip, [props.step]);
 

@@ -197,12 +197,12 @@ to match the tooltip background.
 render(
   <FtuxProvider
     total={6}
-    // tooltipSettings={{
+    tooltipProperties={{
     //   className: "themed-tooltip",
-    //   // backgroundColor: '#333',
-    //   // foregroundColor: 'red',
-    //   // highlightColor: 'pink'
-    // }}
+    //   backgroundColor: 'pink',
+    //   foregroundColor: 'red',
+    //   highlightColor: 'pink'
+    }}
     onFtuxEnd={() => {
       console.log("ftux end");
     }}
