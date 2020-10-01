@@ -13,7 +13,7 @@ import {
 function Demo() {
   return (
     <div>
-      <Menu style={{ height: 61 }} fixed="top" inverted>
+      <Menu style={{ height: 61, fontSize: 16 }} fixed="top" inverted>
         <Menu.Item header>
           <a href="https://github.com/j3k2/react-ftux">react-ftux demo</a>
         </Menu.Item>
@@ -24,16 +24,19 @@ function Demo() {
           step={0}
           content={() => {
             return (
-              <React.Fragment>
-                <h5>Step 0 tooltip</h5>
+              <div className="tooltip">
+                <h3>Step 0 tooltip</h3>
                 <br />
                 <p>
-                  The 'FtuxTooltip' component is included as a sibling to the
-                  menu element. Click buttons, press arrow keys, or press
-                  Enter/Backspace keys to navigate through the tour. Esc key
-                  ends the tour.
+                  {`
+                   Click buttons, press arrow keys, or press
+                   Enter/Backspace keys to navigate through the tour. Escape key or clicking the 'x'
+                   ends the tour. 
+                   Keyboard navigation can be disabled with <FtuxProvider>'s 
+                   'disableKeydownListener' prop.
+                  `}
                 </p>
-              </React.Fragment>
+              </div>
             );
           }}
         >
@@ -44,18 +47,20 @@ function Demo() {
           step={1}
           content={() => {
             return (
-              <React.Fragment>
-                <h5>Step 1 tooltip</h5>
+              <div className="tooltip">
+                <h3>Step 1 tooltip</h3>
                 <br />
-                <p className="tooltip-text">
-                  Font styles for the buttons and tooltip content are not
-                  inherited from their parent elements, and can be controlled by
-                  the 'fontStyle' prop on the 'Ftux' component. App style rules
-                  can still override these defaults for any child elements of
-                  'FtuxTooltip'. Note class 'tooltip-text' applied to this{" "}
-                  {"<p>"} element.
+                <p>
+                  {`
+Note that components that gets passed to the 'content' render prop 
+will inherit styles from outside of the tooltip. Make sure to style these
+to prevent inconsistencies caused by CSS inheritance. 
+The <div> element used for this tooltip's content has the 'tooltip' class, 
+which changes the inherited font-size property and sets the color property
+to match the tooltip background.
+                  `}
                 </p>
-              </React.Fragment>
+              </div>
             );
           }}
         >
@@ -63,18 +68,19 @@ function Demo() {
         </FtuxTooltip>
 
         <FtuxTooltip
-          zIndex={1}
           step={2}
           content={() => {
             return (
-              <React.Fragment>
-                <h5>Step 2 tooltip</h5>
+              <div className="tooltip">
+                <h3>Step 2 tooltip</h3>
                 <br />
                 <p>
-                  The 'zIndex' prop is set to {1} for this tooltip to preserve
-                  dropdown interaction.
+                Default positioning should place the tooltip beside the element it's wrapping,
+                with consideration for the 'pointerDirection' prop. For example, this tooltip
+                has no 'pointerDirection' value, so it defaults to 'above'. Therefore, the tooltip
+                is placed below the targeted element and aligned with its left side.
                 </p>
-              </React.Fragment>
+              </div>
             );
           }}
         >
@@ -102,20 +108,21 @@ function Demo() {
         <FtuxTooltip
           pointerDirection="left"
           offsetLeft={-160}
-          offsetTop={-10}
+          offsetTop={-6}
           zIndex={1}
           step={3}
           content={() => {
             return (
-              <React.Fragment>
-                <h5>Step 3 tooltip</h5>
+              <div className="tooltip">
+                <h3>Step 3 tooltip</h3>
                 <br />
                 <p>
-                  This tooltip has the 'pointerDirection' prop set to 'left',
-                  'offsetLeft' prop set to '-160', and 'offsetTop' prop set to
-                  '-10' to adjust tooltip position.
+                  This tooltip has the 'pointerDirection' prop set to 'left', so its default positioning
+                  is to the right of the targeted element, aligned to its top.
+                  The 'offsetLeft' prop is set to '-160' and the 'offsetTop' prop is set to '-6', so it's
+                  shifted from its default position to point directly to the text in the targeted element.
                 </p>
-              </React.Fragment>
+              </div>
             );
           }}
         >
@@ -131,15 +138,15 @@ function Demo() {
           step={5}
           content={() => {
             return (
-              <React.Fragment>
-                <h5>Step 5 tooltip</h5>
+              <div className="tooltip">
+                <h3>Step 5 tooltip</h3>
                 <br />
                 <p>
                   This tooltip has the 'scrollToTop' prop included, which is
                   preferred over the 'scrollTo' prop for elements at the top of
                   scrollable content.
                 </p>
-              </React.Fragment>
+              </div>
             );
           }}
         >
@@ -159,14 +166,14 @@ function Demo() {
           step={4}
           content={() => {
             return (
-              <React.Fragment>
-                <h5>Step 4 tooltip</h5>
+              <div className="tooltip">
+                <h3>Step 4 tooltip</h3>
                 <br />
                 <p>
                   This tooltip has the 'scrollTo' prop included and the
                   'pointerDirection' prop set to 'below'.
                 </p>
-              </React.Fragment>
+              </div>
             );
           }}
         >

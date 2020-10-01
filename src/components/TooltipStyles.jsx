@@ -13,14 +13,12 @@ const TooltipBody = styled.div`
   opacity: ${(props) => props.display};
   transition: opacity 0.4s ease-in;
   pointer-events: ${(props) => (props.display ? "auto" : "none")};
-  top: ${(props) => props.offsets ? props.offsets.offsetTop : ''}px;
-  left: ${(props) => props.offsets ? props.offsets.offsetLeft : ''}px;
-  bottom: ${(props) => props.offsets ? props.offsets.offsetBottom : ''}px;
-  right: ${(props) => props.offsets ? props.offsets.offsetRight : ''}px;
+  top: ${(props) => (props.offsets ? props.offsets.offsetTop : "")}px;
+  left: ${(props) => (props.offsets ? props.offsets.offsetLeft : "")}px;
+  bottom: ${(props) => (props.offsets ? props.offsets.offsetBottom : "")}px;
+  right: ${(props) => (props.offsets ? props.offsets.offsetRight : "")}px;
   background-color: ${(props) => props.backgroundColor};
-  color: #fff;
   width: 400px;
-  font-size: 14px;
 `;
 
 const TooltipPointer = styled.div`
@@ -69,23 +67,25 @@ const TooltipButton = styled.button`
   margin: 4px;
   width: 64px;
   height: 32px;
-  background-color: #000;
+  font-size: 14px;
   border: solid 1px #fff;
   border-radius: 5px;
   color: #fff;
+  cursor: pointer;
   :hover {
-    cursor: pointer;
     color: #808080;
     border-color: #808080;
   }
 `;
 
-const CloseButton = styled.span`
+const CloseButton = styled.button`
+  all: unset;
   position: absolute;
   top: 4px;
   right: 6px;
   font-size: 16px;
   cursor: pointer;
+  color: #fff;
   :hover {
     color: #808080;
   }

@@ -15,9 +15,9 @@ Peer dependencies are `react` and `react-dom`.
 # Usage:
 
 1. Import components as needed (`import {FtuxProvider, FtuxTooltip} from 'react-ftux';`).
-2. Add `<FtuxProvider/>` to your app, with the required prop `total`. It must be an ancestor element to all `<FtuxTooltip/>` elements.
-3. Add `<FtuxTooltip/>` as a wrapper/parent to any element that should have a tooltip pointed to it.
-4. `<FtuxTooltip/>`'s `step` prop is required. Its `content` prop accepts a component to be rendered inside the tooltip.
+2. Add `<FtuxProvider>` to your app, with the required prop `total`. It must be an ancestor element to all `<FtuxTooltip>` elements.
+3. Add `<FtuxTooltip>` as a wrapper/parent to any element that should have a tooltip pointed to it.
+4. `<FtuxTooltip>`'s `step` prop is required. Its `content` prop accepts a component to be rendered inside the tooltip.
 
 # Example:
 
@@ -63,7 +63,8 @@ Peer dependencies are `react` and `react-dom`.
 
 # Tooltip styling notes:
 
-Default styles for tooltips can be modified by writing css rules for the elements, which are structured like so:
+Default styles for tooltips can be modified by writing css rules 
+for the elements, which are structured like so:
 
 ```
 <div id="ftux-id-0" className="ftux-tooltip">
@@ -75,11 +76,20 @@ Default styles for tooltips can be modified by writing css rules for the element
             <button className="ftux-tooltip-button ftux-tooltip-button-next"></button>
             <button className="ftux-tooltip-button ftux-tooltip-button-end"></button>
         </div>
-        <span className="ftux-tooltip-close"></span>
+        <button className="ftux-tooltip-close"></button>
     </div>
 </div>
 ```
 
-Custom css classes can also be applied to the "ftux-tooltip" element by setting the "className" property in the tooltipSettings object.
+Custom css classes can also be applied to the "ftux-tooltip" element by 
+setting the "className" property in the tooltipSettings object.
 
-To prevent unwanted style inheritance from outside the tooltip component, ftux-tooltip-button elements have "all: unset" applied.
+To prevent unintentional CSS inheritance from outside the 
+tooltip component, the button elements have "all: unset" applied (https://developer.mozilla.org/en-US/docs/Web/CSS/unset).
+
+IMPORTANT: because of the way that styled-components styles are injected, 
+your custom styles may not override the default styles 
+as expected (https://styled-components.com/docs/advanced#issues-with-specificity). 
+This can be addressed by either increasing the specificity 
+of your rules (`.ftux-tooltip.ftux-tooltip {}` instead of `.ftux-tooltip {}`) 
+or using `!important` on each property.
