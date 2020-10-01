@@ -84,6 +84,16 @@ export default function FtuxTooltip(props) {
   };
 
   const initializeTooltip = () => {
+    if (
+      (!props.step && props.step !== 0) ||
+      typeof props.step !== "number" ||
+      props.step > ftuxTotalSteps - 1 ||
+      props.step < 0
+    ) {
+      console.error(
+        `react-ftux error: FtuxTooltip requires a valid value for its 'step' prop.`
+      );
+    }
     if (tooltipProperties) {
       tooltipSettings = { ...tooltipSettings, ...tooltipProperties };
     }

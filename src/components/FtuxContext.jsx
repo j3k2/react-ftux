@@ -4,14 +4,26 @@ const FtuxContext = React.createContext();
 
 function FtuxProvider(props) {
   const [tooltipProperties, setTooltipProperties] = React.useState();
-  const [ftuxStep, setFtuxStep] = React.useState();
+  const [ftuxStep, setFtuxStep] = React.useState(null);
 
   const ftuxTotalSteps = props.total;
+
+  const keydownHandler = React.useCallback((event) => {
+    if (event.key === "ArrowLeft" || event.key === "Backspace") {
+      decreaseStep();
+    }
+    if (event.key === "ArrowRight" || event.key === "Enter") {
+      increaseStep();
+    }
+    if (event.key === "Escape") {
+      endFtux();
+    }
+  }, []);
 
   const increaseStep = () => {
     setFtuxStep((ftuxStep) => {
       const nextStep = ftuxStep + 1;
-      if(nextStep === ftuxTotalSteps) {
+      if (nextStep === ftuxTotalSteps) {
         endFtux();
       }
       return nextStep;
@@ -25,25 +37,15 @@ function FtuxProvider(props) {
     });
   };
 
-  const keydownHandler = (event) => {
-    if (event.key === "ArrowLeft" || event.key === "Backspace") {
-      decreaseStep();
-    }
-    if (event.key === "ArrowRight" || event.key === "Enter") {
-      increaseStep();
-    }
-    if (event.key === "Escape") {
-      endFtux();
-    }
-  };
-
   const init = () => {
     setFtuxStep(0);
   };
 
   const endFtux = () => {
-    setFtuxStep();
-    window.removeEventListener("keydown", keydownHandler);
+    setFtuxStep(null);
+    if (!props.disableKeydownListener) {
+      window.removeEventListener("keydown", keydownHandler, true);
+    }
     if (props.onFtuxEnd) {
       props.onFtuxEnd();
     }
@@ -52,7 +54,7 @@ function FtuxProvider(props) {
   React.useEffect(() => {
     setTooltipProperties(props.tooltipProperties);
     if (!props.disableKeydownListener) {
-      window.addEventListener("keydown", keydownHandler);
+      window.addEventListener("keydown", keydownHandler, true);
     }
     if (!props.disable) {
       init();
@@ -62,7 +64,7 @@ function FtuxProvider(props) {
 
     return () => {
       if (!props.disableKeydownListener) {
-        window.removeEventListener("keydown", keydownHandler);
+        window.removeEventListener("keydown", keydownHandler, true);
       }
     };
   }, [props]);

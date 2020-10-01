@@ -196,9 +196,9 @@ render(
     //   // foregroundColor: 'red',
     //   // highlightColor: 'pink'
     // }}
-    // onFtuxEnd={() => {
-    //   console.log("ftux end");
-    // }}
+    onFtuxEnd={() => {
+      console.log("ftux end");
+    }}
   >
     <Demo />
   </FtuxProvider>,
