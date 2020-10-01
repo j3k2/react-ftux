@@ -37,7 +37,7 @@ Peer dependencies are `react` and `react-dom`.
 </FtuxProvider>
 ```
 
-# <FtuxProvider/> props:
+# `<FtuxProvider>` props:
 
 - total (required): [Integer] Total number of steps in walkthrough
 - disable: [Boolean] Hide/end walkthrough
@@ -50,7 +50,7 @@ Peer dependencies are `react` and `react-dom`.
   - prevLabel: [String] Custom text to replace `'Prev'` on button
   - doneLabel: [String] Custom text to replace `'Done'` on button
 
-# <FtuxTooltip/> props:
+# `<FtuxTooltip>` props:
 
 - step (required): [Integer] 0-indexed step identifier
 - content: [Function] React component to be rendered inside the tooltip
