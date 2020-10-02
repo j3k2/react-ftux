@@ -63,6 +63,7 @@ const TooltipButtons = styled.div`
 
 const TooltipButton = styled.button`
   all: unset;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
   text-align: center;
   margin: 4px;
   width: 64px;
@@ -80,10 +81,11 @@ const TooltipButton = styled.button`
 
 const CloseButton = styled.button`
   all: unset;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
   position: absolute;
   top: 4px;
   right: 6px;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   color: #fff;
   :hover {
