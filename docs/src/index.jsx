@@ -114,6 +114,7 @@ function Demo() {
           offsetLeft={-160}
           offsetTop={-6}
           step={3}
+          zIndex={1}
           content={() => {
             return (
               <div className="tooltip">
