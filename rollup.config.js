@@ -12,7 +12,7 @@ export default {
         file: 'lib/bundle.js',
         format: 'cjs'
     },
-    external: ['react', 'react-dom', 'wolfy87-eventemitter', 'styled-components'],
+    external: ['react', 'react-dom', 'styled-components'],
     plugins: [
         resolve(),
         commonjs({
