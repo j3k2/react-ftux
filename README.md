@@ -43,7 +43,7 @@ Peer dependencies are `react` and `react-dom`.
 - disable: [Boolean] Hide/end walkthrough
 - onFtuxEnd: [Function] Callback to be called when the walkthrough is complete
 - disableKeydownListener: [Boolean] Disable arrow, Enter, Backspace, and Escape key listeners. Default value is `false`.
-- tooltipProperties: [Object] Settings to be applied to all tooltips
+- tooltipProperties: [Object] Settings to be applied to all tooltips. These properties can also be overwritten on each individual tooltip by setting them as a `<FtuxTooltip>` prop.
   - className: [String] className value to be applied to all tooltips' "ftux-tooltip" elements (see FtuxTooltip elements/classes below)
   - backgroundColor: [HTML Color] Color to be used for background of all tooltips. Makes it easier to set border color property for all tooltip pointers, regardless of direction. Default value is `'#000'`.
   - nextLabel: [String] Custom text to replace `'Next'` on button
@@ -60,11 +60,11 @@ Peer dependencies are `react` and `react-dom`.
 - scrollTo: [Boolean] When this step is displayed, scroll window to tooltip
 - scrollToTop: [Boolean] When this step is displayed, scroll window to top
 - zIndex: [Number] Default value is `'auto'`
+- className, backgroundColor, nextLabel, prevLabel, doneLabel: These props will overwrite whatever value is set for the properties with the same name in `<FtuxProvider>`'s tooltipProperties object.
 
 # Tooltip styling notes:
 
-Default styles for tooltips can be modified by writing css rules 
-for the elements, which are structured like so:
+Default styles for tooltips can be modified by writing css rules for the elements, which are structured like so:
 
 ```
 <div id="ftux-id-0" className="ftux-tooltip">
@@ -81,15 +81,8 @@ for the elements, which are structured like so:
 </div>
 ```
 
-Custom css classes can also be applied to the "ftux-tooltip" element by 
-setting the "className" property in the tooltipSettings object.
+Custom css classes can also be applied to the "ftux-tooltip" element by setting the "className" property in the tooltipSettings object.
 
-To prevent unintentional CSS inheritance from outside the 
-tooltip component, the button elements have "all: unset" applied (https://developer.mozilla.org/en-US/docs/Web/CSS/unset).
+To prevent unintentional CSS inheritance from outside the tooltip component, the button elements have "all: unset" applied (https://developer.mozilla.org/en-US/docs/Web/CSS/unset).
 
-IMPORTANT: because of the way that styled-components styles are injected, 
-your custom styles may not override the default styles 
-as expected (https://styled-components.com/docs/advanced#issues-with-specificity). 
-This can be addressed by either increasing the specificity 
-of your rules (`.ftux-tooltip.ftux-tooltip {}` instead of `.ftux-tooltip {}`) 
-or using `!important` on each property.
+IMPORTANT: because of the way that styled-components styles are injected, your custom styles may not override the default styles as expected (https://styled-components.com/docs/advanced#issues-with-specificity). This can be addressed by either increasing the specificity of your rules (`.ftux-tooltip.ftux-tooltip {}` instead of `.ftux-tooltip {}`) or using `!important` on specific properties.

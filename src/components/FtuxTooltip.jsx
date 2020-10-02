@@ -99,7 +99,7 @@ export default function FtuxTooltip(props) {
 
   React.useEffect(() => {
     if(tooltipProperties) {
-      setTooltipSettings({...tooltipSettings, ...tooltipProperties})
+      setTooltipSettings({...tooltipSettings, ...tooltipProperties, ...props})
     }
   }, [tooltipProperties]);
 

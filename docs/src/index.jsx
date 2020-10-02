@@ -22,6 +22,7 @@ function Demo() {
 
         <FtuxTooltip
           step={0}
+          // backgroundColor="red"
           content={() => {
             return (
               <div className="tooltip">
@@ -29,11 +30,11 @@ function Demo() {
                 <br />
                 <p>
                   {`
-                   Click buttons, press arrow keys, or press
-                   Enter/Backspace keys to navigate through the tour. Escape key or clicking the 'x'
-                   ends the tour. 
-                   Keyboard navigation can be disabled with <FtuxProvider>'s 
-                   'disableKeydownListener' prop.
+                  Click buttons, press arrow keys, or press
+                  Enter/Backspace keys to navigate through the tour. Escape key or clicking the 'x'
+                  ends the tour. 
+                  Keyboard navigation can be disabled with <FtuxProvider>'s 
+                  'disableKeydownListener' prop.
                   `}
                 </p>
               </div>
@@ -52,12 +53,12 @@ function Demo() {
                 <br />
                 <p>
                   {`
-Note that components that gets passed to the 'content' render prop 
-will inherit styles from outside of the tooltip. Make sure to style these
-to prevent inconsistencies caused by CSS inheritance. 
-The <div> element used for this tooltip's content has the 'tooltip' class, 
-which changes the inherited font-size property and sets the color property
-to match the tooltip background.
+                  Note that components that gets passed to the 'content' render prop 
+                  will inherit styles from outside of the tooltip. Make sure to style these
+                  to prevent inconsistencies caused by CSS inheritance. 
+                  The <div> element used for this tooltip's content has the 'tooltip' class, 
+                  which changes the inherited font-size property and sets the color property
+                  to match the tooltip background.
                   `}
                 </p>
               </div>
@@ -69,16 +70,19 @@ to match the tooltip background.
 
         <FtuxTooltip
           step={2}
+          // zIndex={9}
           content={() => {
             return (
               <div className="tooltip">
                 <h3>Step 2 tooltip</h3>
                 <br />
                 <p>
-                Default positioning should place the tooltip beside the element it's wrapping,
-                with consideration for the 'pointerDirection' prop. For example, this tooltip
-                has no 'pointerDirection' value, so it defaults to 'above'. Therefore, the tooltip
-                is placed below the targeted element and aligned with its left side.
+                  Default positioning should place the tooltip beside the
+                  element it's wrapping, with consideration for the
+                  'pointerDirection' prop. For example, this tooltip has no
+                  'pointerDirection' value, so it defaults to 'above'.
+                  Therefore, the tooltip is placed below the targeted element
+                  and aligned with its left side.
                 </p>
               </div>
             );
@@ -109,7 +113,6 @@ to match the tooltip background.
           pointerDirection="left"
           offsetLeft={-160}
           offsetTop={-6}
-          zIndex={1}
           step={3}
           content={() => {
             return (
@@ -117,10 +120,12 @@ to match the tooltip background.
                 <h3>Step 3 tooltip</h3>
                 <br />
                 <p>
-                  This tooltip has the 'pointerDirection' prop set to 'left', so its default positioning
-                  is to the right of the targeted element, aligned to its top.
-                  The 'offsetLeft' prop is set to '-160' and the 'offsetTop' prop is set to '-6', so it's
-                  shifted from its default position to point directly to the text in the targeted element.
+                  This tooltip has the 'pointerDirection' prop set to 'left', so
+                  its default positioning is to the right of the targeted
+                  element, aligned to its top. The 'offsetLeft' prop is set to
+                  '-160' and the 'offsetTop' prop is set to '-6', so it's
+                  shifted from its default position to point directly to the
+                  text in the targeted element.
                 </p>
               </div>
             );
@@ -134,7 +139,6 @@ to match the tooltip background.
       <Container text style={{ marginTop: "7em", paddingLeft: "15rem" }}>
         <FtuxTooltip
           scrollToTop
-          zIndex={1}
           step={5}
           content={() => {
             return (
@@ -197,12 +201,14 @@ to match the tooltip background.
 render(
   <FtuxProvider
     total={6}
-    tooltipProperties={{
-    //   className: "themed-tooltip",
-    //   backgroundColor: 'pink',
-    //   foregroundColor: 'red',
-    //   highlightColor: 'pink'
-    }}
+    tooltipProperties={
+      {
+        // className: "themed-tooltip",
+        // backgroundColor: 'pink',
+        // foregroundColor: 'red',
+        // highlightColor: 'pink'
+      }
+    }
     onFtuxEnd={() => {
       console.log("ftux end");
     }}
