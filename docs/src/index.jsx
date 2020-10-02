@@ -140,6 +140,7 @@ function Demo() {
         <FtuxTooltip
           scrollToTop
           step={5}
+          zIndex={1}
           content={() => {
             return (
               <div className="tooltip">
@@ -148,7 +149,7 @@ function Demo() {
                 <p>
                   This tooltip has the 'scrollToTop' prop included, which is
                   preferred over the 'scrollTo' prop for elements at the top of
-                  scrollable content.
+                  scrollable content. 
                 </p>
               </div>
             );
